@@ -28,25 +28,26 @@ public class SendFragment extends Fragment {
         final TextView textView = root.findViewById(R.id.text_send);
         final Button send=root.findViewById(R.id.sendBTN);
 
-        try {
+
 
 
             send.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-
-                    Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                    sendIntent.putExtra("sms_body", "default content");
-                    sendIntent.setType("vnd.android-dir/mms-sms");
-                    startActivity(sendIntent);
+                    try {
+                        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                        sendIntent.putExtra("sms_body", "default content");
+                        sendIntent.setType("vnd.android-dir/mms-sms");
+                        startActivity(sendIntent);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             });
-        }
-        catch (Exception e){
-            e.printStackTrace();
 
-        }
+       
         sendViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
