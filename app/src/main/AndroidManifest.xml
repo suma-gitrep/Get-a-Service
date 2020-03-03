@@ -27,6 +27,11 @@
           >
 
         </activity>
+        <activity
+            android:name=".EditActivity"
+            >
+
+        </activity>
 
         <activity
             android:name=".CustomerRegisterActivity"

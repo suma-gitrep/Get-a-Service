@@ -73,6 +73,17 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         header = navigationView.getHeaderView(0);
         ImageView nav_head_image=header.findViewById(R.id.imageView);
 
+        ImageView editpic=header.findViewById(R.id.editpic);
+
+        editpic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                startActivity(intent);
+
+            }
+        });
         nav_head_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

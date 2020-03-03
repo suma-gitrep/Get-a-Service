@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
 
 
-
     <SearchView
         android:id="@+id/simpleSearchView"
         android:layout_width="wrap_content"
@@ -24,27 +23,28 @@
         android:src="@drawable/filter"
         android:layout_marginTop="5dp"
         tools:layout_editor_absoluteX="365dp"
-
+app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="80dp"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/interplanettary_RV"
         android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/simpleSearchView"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
+        tools:ignore="MissingConstraints,UnknownId"
         tools:layout_editor_absoluteX="48dp"
         tools:layout_editor_absoluteY="126dp"></androidx.recyclerview.widget.RecyclerView>
 
-<!--    <TextView-->
-<!--        android:id="@+id/text"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="343dp"-->
-<!--        android:text="TextView"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/text"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="343dp"-->
+    <!--        android:text="TextView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
