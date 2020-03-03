@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:text="Want labour services online? Book a worker through this app easily and get
+your work done within no time!"
+        android:gravity="center"
+        />
+    <Button
+        android:id="@+id/regcustomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register As customer"
+        android:layout_margin="40dp"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        />
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:text="Want to earn money online? Book a  Appointment through this app easily and get
+your pay within no time!"
+        android:gravity="center"
+
+        />
+    <Button
+        android:id="@+id/regworker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register As Worker"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+/>
+
+
+</LinearLayout>
