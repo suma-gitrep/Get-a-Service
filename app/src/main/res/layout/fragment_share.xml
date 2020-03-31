@@ -10,16 +10,16 @@
         android:id="@+id/text_share"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:text="Share Get A Service App"
-        android:textSize="20sp"
-         />
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
-    <Button
+    <ImageView
         android:id="@+id/share"
         android:layout_marginTop="300dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/shareicon"
         android:layout_gravity="center_horizontal"
         android:text="Share App"
 
