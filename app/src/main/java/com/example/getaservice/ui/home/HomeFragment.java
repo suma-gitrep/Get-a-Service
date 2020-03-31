@@ -1,5 +1,6 @@
 package com.example.getaservice.ui.home;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 
@@ -25,6 +28,9 @@ import com.example.getaservice.R;
 import com.example.getaservice.adapter.MyAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class HomeFragment extends Fragment implements ExampleDialog.ExampleDialogListener {
 
@@ -52,6 +58,90 @@ public class HomeFragment extends Fragment implements ExampleDialog.ExampleDialo
         //final TextView textView = root.findViewById(R.id.text_home);
         final TextView text = root.findViewById(R.id.text);
 
+        ImageView filterImg=root.findViewById(R.id.filter);
+
+        filterImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Build an AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                // String array for alert dialog multi choice items
+                String[] colors = new String[]{
+                        "Laboratory",
+                        "Plumber",
+                        "carpentry",
+                        "Babysitting",
+                        "home services"
+                };
+
+                // Boolean array for initial selected items
+                final boolean[] checkedColors = new boolean[]{
+                        false,
+                        true,
+                        false,
+                        true,
+                        false
+
+                };
+
+                // Convert the color array to list
+                final List<String> colorsList = Arrays.asList(colors);
+
+                // Set multiple choice items for alert dialog
+
+                builder.setMultiChoiceItems(colors, checkedColors, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+
+                        // Update the current focused item's checked status
+                        checkedColors[which] = isChecked;
+
+                        // Get the current focused item
+                        String currentItem = colorsList.get(which);
+
+                        // Notify the current action
+                        Toast.makeText(getActivity(),
+                                currentItem + " " + isChecked, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // Specify the dialog is not cancelable
+                builder.setCancelable(false);
+
+                // Set a title for alert dialog
+                builder.setTitle("Your preferred colors?");
+
+                // Set the positive/yes button click listener
+                builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                // Set the negative/no button click listener
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when click the negative button
+                    }
+                });
+
+                // Set the neutral/cancel button click listener
+                builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when click the neutral button
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
+            }
+        });
         //REFERENCE
         rv= (RecyclerView) root.findViewById(R.id.interplanettary_RV);
 
