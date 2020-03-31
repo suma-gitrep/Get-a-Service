@@ -130,10 +130,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
 
 
 
-                            Toast.makeText(MainActivity.this,"Successfully you logged out of the app", Toast.LENGTH_LONG).show();
-
-
-
+                            Toast.makeText(MainActivity.this,"Successfully you loggedout of the app", Toast.LENGTH_LONG).show();
 
 
 
