@@ -25,7 +25,7 @@ public class EditActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(EditActivity.this, "Succesfully saved all user data", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditActivity.this, "Succesfully saved all the data of user", Toast.LENGTH_LONG).show();
 
 
                 Intent in=new Intent(getApplicationContext(), MainActivity.class);
@@ -40,7 +40,7 @@ public class EditActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 Toast.makeText(
                         EditActivity.this,
-                        "Cancelled to save the data",
+                        "Cancelled to save the data in edit profile",
                         Toast.LENGTH_LONG).show();
                 Intent in=new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in);
