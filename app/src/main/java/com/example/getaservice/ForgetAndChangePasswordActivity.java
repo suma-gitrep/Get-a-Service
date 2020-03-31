@@ -56,8 +56,8 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
             labelMode.setHint("Enter New Password");
         } else if (mode == 2) {
             txtMode.setText("Change Email");
-            edtMode.setHint("Enter New Email");
-            labelMode.setHint("Enter New Email");
+            edtMode.setHint("Enter the New Email");
+            labelMode.setHint("Enter the New Email");
         } else {
             txtMode.setText("Delete User");
             edtMode.setVisibility(View.GONE);
