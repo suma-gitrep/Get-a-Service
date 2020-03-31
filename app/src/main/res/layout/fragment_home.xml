@@ -8,23 +8,23 @@
 
     <SearchView
         android:id="@+id/simpleSearchView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="341dp"
+        android:layout_height="54dp"
         android:gravity="right"
         android:queryHint="Location Search"
         android:tooltipText="location search"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="62dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="49dp" />
 
     <ImageView
         android:id="@+id/filter"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="62dp"
+        android:layout_height="41dp"
         android:src="@drawable/filter"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="80dp" />
+        tools:layout_editor_absoluteY="51dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/interplanettary_RV"
