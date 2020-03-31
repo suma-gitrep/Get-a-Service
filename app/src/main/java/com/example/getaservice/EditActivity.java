@@ -27,7 +27,6 @@ public class EditActivity extends AppCompatActivity  {
 
                 Toast.makeText(EditActivity.this, "Succesfully saved all the data of user", Toast.LENGTH_LONG).show();
 
-
                 Intent in=new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in);
 
