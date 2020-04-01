@@ -76,9 +76,10 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                                     }
                                 });
                     }
-
-
                     
+
+
+
 
                     else
                         {
