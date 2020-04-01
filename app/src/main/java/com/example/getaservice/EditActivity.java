@@ -14,6 +14,7 @@ public class EditActivity extends AppCompatActivity  {
 
     @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.activity_editprofile);
         save=findViewById(R.id.savebutton);
         cancel=findViewById(R.id.cancel);
@@ -37,11 +38,13 @@ public class EditActivity extends AppCompatActivity  {
             public void onClick(View v) {
 
                 Toast.makeText(
+
                         EditActivity.this,
                         "Cancelled to save the data in edit profile",
                         Toast.LENGTH_LONG).show();
                 Intent in=new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in);
+
 
 
             }
