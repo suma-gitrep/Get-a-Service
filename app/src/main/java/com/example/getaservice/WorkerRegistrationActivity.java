@@ -50,6 +50,8 @@ Button sign_up_button;
                 finish();
             }
         });
+
+        
     }
 
     @Override
@@ -61,7 +63,7 @@ Button sign_up_button;
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        
+
 
     }
 
