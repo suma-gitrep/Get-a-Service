@@ -42,7 +42,7 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
         txtMode = (TextView) findViewById(R.id.title);
         submit = (Button) findViewById(R.id.submit_button);
         labelMode = (TextInputLayout) findViewById(R.id.label);
-        
+
         final int mode = getIntent().getIntExtra("Mode", 0);
         if (mode == 0) {
 
@@ -59,9 +59,12 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
             edtMode.setHint("Enter the New Email");
             labelMode.setHint("Enter the New Email");
         } else {
+
             txtMode.setText("Delete User");
             edtMode.setVisibility(View.GONE);
+
         }
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override            public void onClick(View view) {
@@ -76,10 +79,14 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
         FirebaseUser user = auth.getCurrentUser();
         final String modeStr = edtMode.getText().toString();
         if (mode == 0) {
+
             if (TextUtils.isEmpty(modeStr)) {
+
                 edtMode.setError("Value Required");
             } else {
+
                 PD.show();
+                
                 auth.sendPasswordResetEmail(modeStr).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override                    public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
