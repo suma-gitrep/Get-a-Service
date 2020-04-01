@@ -35,7 +35,7 @@ Button sign_up_button;
         categories.add("cleaner");
         categories.add("food services");
         categories.add("Baby Sitter");
-        
+
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         // Drop down layout style - list view with radio button
@@ -56,6 +56,8 @@ Button sign_up_button;
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
     }
+
+    
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
