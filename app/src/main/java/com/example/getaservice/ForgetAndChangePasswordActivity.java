@@ -86,7 +86,7 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
             } else {
 
                 PD.show();
-                
+
                 auth.sendPasswordResetEmail(modeStr).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override                    public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {

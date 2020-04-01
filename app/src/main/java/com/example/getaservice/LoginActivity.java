@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override            public void onClick(View view) {
+
 //                final String email = inputEmail.getText().toString();
 //                final String password = inputPassword.getText().toString();
 //
@@ -80,17 +81,23 @@ public class LoginActivity extends AppCompatActivity {
                                                     "user logged in successfully",
                                                     Toast.LENGTH_LONG).show();
 
+
+
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                             startActivity(intent);
                                             finish();
+
+
 
             }
         });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override  public void onClick(View view) {
+
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                
             }
         });
 
