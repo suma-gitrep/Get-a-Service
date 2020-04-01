@@ -11,13 +11,14 @@ public class WorkerFullDetailsActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        
         setContentView(R.layout.activity_workerdetails);
         {
 
 
 
 
-            
+
 
         }
     }
