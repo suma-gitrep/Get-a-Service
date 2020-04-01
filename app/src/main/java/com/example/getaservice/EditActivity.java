@@ -18,7 +18,7 @@ public class EditActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_editprofile);
         save=findViewById(R.id.savebutton);
         cancel=findViewById(R.id.cancel);
-        
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
