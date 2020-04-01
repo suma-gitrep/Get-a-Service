@@ -32,7 +32,6 @@ public class  ExampleDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        
                         Toast toast = Toast.makeText(getActivity(),"Booking Cancelled"
                                 , Toast.LENGTH_SHORT);
 
@@ -71,6 +70,7 @@ public class  ExampleDialog extends AppCompatDialogFragment {
 
             listener = (ExampleDialogListener) context;
         } catch (ClassCastException e) {
+            
             throw new ClassCastException(context.toString() +
                     "must implement ExampleDialogListener");
 
