@@ -30,12 +30,10 @@ public class SignUpActivity extends AppCompatActivity {
         regWorker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 Intent intent = new Intent(SignUpActivity.this, WorkerRegistrationActivity.class);
                 startActivity(intent);
                 finish();
-
-
             }
         });
 
