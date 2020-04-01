@@ -76,12 +76,9 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        
         header = navigationView.getHeaderView(0);
         ImageView nav_head_image=header.findViewById(R.id.imageView);
-
         ImageView editpic=header.findViewById(R.id.editpic);
-
         editpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
