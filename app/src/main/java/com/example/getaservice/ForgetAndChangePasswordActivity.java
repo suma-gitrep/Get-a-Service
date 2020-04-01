@@ -37,14 +37,12 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
-
         auth = FirebaseAuth.getInstance();
-
         edtMode = (EditText) findViewById(R.id.mode);
         txtMode = (TextView) findViewById(R.id.title);
         submit = (Button) findViewById(R.id.submit_button);
         labelMode = (TextInputLayout) findViewById(R.id.label);
-
+        
         final int mode = getIntent().getIntExtra("Mode", 0);
         if (mode == 0) {
             txtMode.setText("Forget Password");
