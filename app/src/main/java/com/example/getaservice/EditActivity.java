@@ -13,7 +13,7 @@ public class EditActivity extends AppCompatActivity  {
     Button save,cancel;
 
     @Override    protected void onCreate(Bundle savedInstanceState) {
-        
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
         save=findViewById(R.id.savebutton);

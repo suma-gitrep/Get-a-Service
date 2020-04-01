@@ -72,8 +72,6 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                                             Intent intent = new Intent(CustomerRegisterActivity.this, MainActivity.class);
                                             startActivity(intent);
                                             finish();
-
-
                                         }
                                         PD.dismiss();
                                     }
