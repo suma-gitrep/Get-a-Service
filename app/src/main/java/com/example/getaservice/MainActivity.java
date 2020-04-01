@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         auth = FirebaseAuth.getInstance();
 
       //  user = auth.getCurrentUser();
-        
+
         PD = new ProgressDialog(this);
 
         PD.setMessage("Loading...");
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        
         header = navigationView.getHeaderView(0);
         ImageView nav_head_image=header.findViewById(R.id.imageView);
 
