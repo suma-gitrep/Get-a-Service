@@ -44,6 +44,7 @@ public class CustomerRegisterActivity extends AppCompatActivity {
             finish();
         }
 
+        
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
