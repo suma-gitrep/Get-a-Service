@@ -41,9 +41,8 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
         edtMode = (EditText) findViewById(R.id.mode);
         txtMode = (TextView) findViewById(R.id.title);
         submit = (Button) findViewById(R.id.submit_button);
-        
         labelMode = (TextInputLayout) findViewById(R.id.label);
-
+        
         final int mode = getIntent().getIntExtra("Mode", 0);
         if (mode == 0) {
 
