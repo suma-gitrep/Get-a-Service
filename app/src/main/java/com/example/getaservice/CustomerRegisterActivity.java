@@ -31,14 +31,11 @@ public class CustomerRegisterActivity extends AppCompatActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_customer);
-
         PD = new ProgressDialog(this);
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
-
         auth = FirebaseAuth.getInstance();
-
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(CustomerRegisterActivity.this, MainActivity.class));
             finish();
@@ -54,8 +51,8 @@ public class CustomerRegisterActivity extends AppCompatActivity {
             @Override            public void onClick(View view) {
                 final String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
-
                 try {
+
                     if (password.length() > 0 && email.length() > 0) {
                         PD.show();
                         auth.createUserWithEmailAndPassword(email, password)
@@ -64,11 +61,14 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (!task.isSuccessful()) {
                                             Toast.makeText(
+
                                                     CustomerRegisterActivity.this,
                                                     "Authentication Failed",
                                                     Toast.LENGTH_LONG).show();
+
                                             Log.v("error", task.getResult().toString());
                                         } else {
+
                                             Intent intent = new Intent(CustomerRegisterActivity.this, MainActivity.class);
                                             startActivity(intent);
                                             finish();
@@ -79,7 +79,7 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(
                                 CustomerRegisterActivity.this,
-                                "Fill All Fields",
+                                "Fill All THE Fields",
                                 Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception e) {

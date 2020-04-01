@@ -34,7 +34,7 @@ public class  ExampleDialog extends AppCompatDialogFragment {
 
                         Toast toast = Toast.makeText(getActivity(),"Booking Cancelled"
                                 , Toast.LENGTH_SHORT);
-                        
+
                         toast.show();
 
                     }
