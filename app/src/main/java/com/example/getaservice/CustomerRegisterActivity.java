@@ -68,7 +68,6 @@ public class CustomerRegisterActivity extends AppCompatActivity {
 
                                             Log.v("error", task.getResult().toString());
                                         } else {
-
                                             Intent intent = new Intent(CustomerRegisterActivity.this, MainActivity.class);
                                             startActivity(intent);
                                             finish();
@@ -80,7 +79,6 @@ public class CustomerRegisterActivity extends AppCompatActivity {
 
                     else
                         {
-
                         Toast.makeText(
                                 CustomerRegisterActivity.this,
                                 "Fill All THE Fields",
@@ -98,8 +96,6 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 }
 
