@@ -70,7 +70,7 @@ public class  ExampleDialog extends AppCompatDialogFragment {
 
             listener = (ExampleDialogListener) context;
         } catch (ClassCastException e) {
-            
+
             throw new ClassCastException(context.toString() +
                     "must implement ExampleDialogListener");
 
