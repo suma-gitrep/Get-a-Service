@@ -21,12 +21,9 @@ Button sign_up_button;
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_register_worker);
-        
         sign_up_button=(Button)findViewById(R.id.sign_up_button) ;
-
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-
-
+        
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
 
