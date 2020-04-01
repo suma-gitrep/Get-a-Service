@@ -43,16 +43,21 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
     private Context an=this;
 
     @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         auth = FirebaseAuth.getInstance();
-      //  user = auth.getCurrentUser();
 
+      //  user = auth.getCurrentUser();
+        
         PD = new ProgressDialog(this);
+
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
