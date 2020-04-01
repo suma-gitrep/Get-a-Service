@@ -59,6 +59,7 @@ public class  ExampleDialog extends AppCompatDialogFragment {
         editTextPassword = view.findViewById(R.id.edit_password);
 
         return builder.create();
+        
     }
 
     @Override
