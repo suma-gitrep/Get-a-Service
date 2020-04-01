@@ -98,21 +98,26 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
 
-                
+
             }
         });
 
         findViewById(R.id.forget_password_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 startActivity(new Intent(getApplicationContext(), ForgetAndChangePasswordActivity.class).putExtra("Mode", 0));
+
             }
         });
 
     }
 
     @Override    protected void onResume() {
+
         if (auth.getCurrentUser() != null) {
+            
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
