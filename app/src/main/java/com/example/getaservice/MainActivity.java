@@ -43,16 +43,21 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
     private Context an=this;
 
     @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         auth = FirebaseAuth.getInstance();
+
       //  user = auth.getCurrentUser();
 
         PD = new ProgressDialog(this);
+
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
@@ -63,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -72,9 +78,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         NavigationView navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         ImageView nav_head_image=header.findViewById(R.id.imageView);
-
         ImageView editpic=header.findViewById(R.id.editpic);
-
         editpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,16 +130,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         switch(item.getItemId()){
             case R.id.action_logout:
 
-
-
-
-
-                            Toast.makeText(MainActivity.this,"Successfully you logged out of the app", Toast.LENGTH_LONG).show();
-
-
-
-
-
+                            Toast.makeText(MainActivity.this,"Successfully you loggedout of the app", Toast.LENGTH_LONG).show();
 
 
 break;

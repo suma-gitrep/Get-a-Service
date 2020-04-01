@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
         auth = FirebaseAuth.getInstance();
-
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         btnSignUp = (TextView) findViewById(R.id.sign_up_button);
@@ -38,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override            public void onClick(View view) {
+
 //                final String email = inputEmail.getText().toString();
 //                final String password = inputPassword.getText().toString();
 //
@@ -78,34 +78,46 @@ public class LoginActivity extends AppCompatActivity {
 
                 Toast.makeText(
                                                     LoginActivity.this,
-                                                    "logged in successfully",
+                                                    "user logged in successfully",
                                                     Toast.LENGTH_LONG).show();
+
+
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                             startActivity(intent);
                                             finish();
+
+
 
             }
         });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override  public void onClick(View view) {
+
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+
+
             }
         });
 
         findViewById(R.id.forget_password_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 startActivity(new Intent(getApplicationContext(), ForgetAndChangePasswordActivity.class).putExtra("Mode", 0));
+
             }
         });
 
     }
 
     @Override    protected void onResume() {
+
         if (auth.getCurrentUser() != null) {
+
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }

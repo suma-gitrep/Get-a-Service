@@ -17,14 +17,16 @@ public class  ExampleDialog extends AppCompatDialogFragment {
     private EditText editTextPassword;
     private ExampleDialogListener listener;
 
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog, null);
-
         builder.setView(view)
+
                 .setTitle("Book Now")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -32,6 +34,7 @@ public class  ExampleDialog extends AppCompatDialogFragment {
 
                         Toast toast = Toast.makeText(getActivity(),"Booking Cancelled"
                                 , Toast.LENGTH_SHORT);
+
 
                         toast.show();
 
@@ -46,6 +49,7 @@ public class  ExampleDialog extends AppCompatDialogFragment {
                         Toast toast = Toast.makeText(getActivity(),"Booked Successfully"
                                 , Toast.LENGTH_SHORT);
 
+
                         toast.show();
 
                     }
@@ -55,19 +59,26 @@ public class  ExampleDialog extends AppCompatDialogFragment {
         editTextPassword = view.findViewById(R.id.edit_password);
 
         return builder.create();
+
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
+
         try {
+
             listener = (ExampleDialogListener) context;
         } catch (ClassCastException e) {
+
             throw new ClassCastException(context.toString() +
                     "must implement ExampleDialogListener");
+
+
         }
     }
+
 
 
     public interface ExampleDialogListener {
