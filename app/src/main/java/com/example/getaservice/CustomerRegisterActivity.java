@@ -75,8 +75,10 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                                         PD.dismiss();
                                     }
                                 });
+
+                        
                     }
-                    
+
 
 
 
