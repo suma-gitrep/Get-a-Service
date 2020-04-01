@@ -20,8 +20,6 @@ public class  ExampleDialog extends AppCompatDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog, null);
@@ -32,10 +30,7 @@ public class  ExampleDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast toast = Toast.makeText(getActivity(),"Booking Cancelled"
                                 , Toast.LENGTH_SHORT);
-
-
                         toast.show();
-
                     }
                 })
                 .setPositiveButton("Book Now", new DialogInterface.OnClickListener() {
@@ -46,18 +41,12 @@ public class  ExampleDialog extends AppCompatDialogFragment {
                         listener.applyTexts(username, password);
                         Toast toast = Toast.makeText(getActivity(),"Booked Successfully"
                                 , Toast.LENGTH_SHORT);
-
-
                         toast.show();
-
                     }
                 });
-
         editTextUsername = view.findViewById(R.id.edit_username);
         editTextPassword = view.findViewById(R.id.edit_password);
-
         return builder.create();
-
     }
 
     @Override
