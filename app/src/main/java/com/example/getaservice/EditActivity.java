@@ -13,23 +13,19 @@ public class EditActivity extends AppCompatActivity  {
     Button save,cancel;
 
     @Override    protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
-
         save=findViewById(R.id.savebutton);
         cancel=findViewById(R.id.cancel);
-
-
-
+        
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Toast.makeText(EditActivity.this, "Succesfully saved all the data of user", Toast.LENGTH_LONG).show();
-
                 Intent in=new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in);
-
             }
         });
 
@@ -43,6 +39,7 @@ public class EditActivity extends AppCompatActivity  {
                         Toast.LENGTH_LONG).show();
                 Intent in=new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in);
+
 
             }
         });
