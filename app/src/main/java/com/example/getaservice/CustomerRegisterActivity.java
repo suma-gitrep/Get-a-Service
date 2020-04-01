@@ -82,7 +82,7 @@ public class CustomerRegisterActivity extends AppCompatActivity {
 
                     else
                         {
-                            
+
                         Toast.makeText(
                                 CustomerRegisterActivity.this,
                                 "Fill All THE Fields",
