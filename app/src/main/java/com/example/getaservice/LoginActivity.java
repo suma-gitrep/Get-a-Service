@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
         auth = FirebaseAuth.getInstance();
-
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         btnSignUp = (TextView) findViewById(R.id.sign_up_button);
