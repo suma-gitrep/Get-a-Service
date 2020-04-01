@@ -35,6 +35,7 @@ Button sign_up_button;
         categories.add("cleaner");
         categories.add("food services");
         categories.add("Baby Sitter");
+        
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         // Drop down layout style - list view with radio button
