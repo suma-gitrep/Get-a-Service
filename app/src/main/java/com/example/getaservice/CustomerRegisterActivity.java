@@ -77,7 +77,9 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                                 });
                     }
 
+
                     
+
                     else
                         {
                         Toast.makeText(
