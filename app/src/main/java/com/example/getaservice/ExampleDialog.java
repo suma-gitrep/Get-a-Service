@@ -49,22 +49,22 @@ public class  ExampleDialog extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-
-        try {
-
-            listener = (ExampleDialogListener) context;
-        } catch (ClassCastException e) {
-
-            throw new ClassCastException(context.toString() +
-                    "must implement ExampleDialogListener");
-
-
-        }
-    }
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//
+//
+//        try {
+//
+//            listener = (ExampleDialogListener) context;
+//        } catch (ClassCastException e) {
+//
+//            throw new ClassCastException(context.toString() +
+//                    "must implement ExampleDialogListener");
+//
+//
+//        }
+//    }
 
 
 
