@@ -124,7 +124,8 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
                 PD.show();
                 user.updateEmail(modeStr)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override                            public void onComplete(@NonNull Task<Void> task) {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(ForgetAndChangePasswordActivity.this, "Email address is updated.", Toast.LENGTH_LONG).show();
                                 } else {
@@ -134,22 +135,23 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
                             }
                         });
             }
-        } else {
-            if (user != null) {
-                PD.show();
-                user.delete()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(ForgetAndChangePasswordActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(ForgetAndChangePasswordActivity.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
-                                }
-                                PD.dismiss();
-                            }
-                        });
-            }
         }
+//         else {
+//            if (user != null) {
+//                PD.show();
+//                user.delete()
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//                                    Toast.makeText(ForgetAndChangePasswordActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
+//                                } else {
+//                                    Toast.makeText(ForgetAndChangePasswordActivity.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
+//                                }
+//                                PD.dismiss();
+//                            }
+//                        });
+//            }
+//        }
 
     }
 
