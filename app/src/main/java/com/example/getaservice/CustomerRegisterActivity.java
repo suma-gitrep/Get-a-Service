@@ -76,21 +76,20 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                                     }
                                 });
 
-                        
                     }
 
 
 
 
 
-                    else
-                        {
-                        Toast.makeText(
-                                CustomerRegisterActivity.this,
-                                "Fill All THE Fields",
-                                Toast.LENGTH_LONG).show();
-
-                    }
+//                    else
+//                        {
+//                        Toast.makeText(
+//                                CustomerRegisterActivity.this,
+//                                "Fill All THE Fields",
+//                                Toast.LENGTH_LONG).show();
+//
+//                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
