@@ -135,22 +135,22 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
                         });
             }
         }
-//         else {
-//            if (user != null) {
-//                PD.show();
-//                user.delete()
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    Toast.makeText(ForgetAndChangePasswordActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-//                                } else {
-//                                    Toast.makeText(ForgetAndChangePasswordActivity.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
-//                                }
-//                                PD.dismiss();
-//                            }
-//                        });
-//            }
-//        }
+         else {
+            if (user != null) {
+                PD.show();
+                user.delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(ForgetAndChangePasswordActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ForgetAndChangePasswordActivity.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
+                                }
+                                PD.dismiss();
+                            }
+                        });
+            }
+        }
 
     }
 
