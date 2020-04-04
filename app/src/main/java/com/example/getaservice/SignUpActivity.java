@@ -29,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+
         regWorker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
-
 
 
 
