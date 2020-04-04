@@ -18,30 +18,9 @@ public class SignUpActivity extends AppCompatActivity {
         regWorker=(Button)findViewById(R.id.regworker);
 
 
-        regCustomer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(SignUpActivity.this, CustomerRegisterActivity.class);
-                startActivity(intent);
-               // finish();
 
 
-            }
-        });
-
-        regWorker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent intent = new Intent(SignUpActivity.this, WorkerRegistrationActivity.class);
-                startActivity(intent);
-                //finish();
-
-
-            }
-        });
+        
 
 
 
