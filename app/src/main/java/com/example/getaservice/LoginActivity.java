@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
                 Toast.makeText(
                         LoginActivity.this,
                         "user logged in successfully",
@@ -65,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
         findViewById(R.id.forget_password_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,11 +77,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override    protected void onResume() {
 
+        if (auth.getCurrentUser() != null) {
 
-
-
-
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+        super.onResume();
     }
 }
