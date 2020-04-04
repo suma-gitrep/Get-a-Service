@@ -140,7 +140,12 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
     }
 
 
-   
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
 
     @Override
     public void applyTexts(String username, String password) {
