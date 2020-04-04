@@ -19,13 +19,19 @@ Button sign_up_button;
 
     @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_register_worker);
+
+
+
+
         sign_up_button=(Button)findViewById(R.id.sign_up_button) ;
+
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+
 
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
+
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("Select A Category");
@@ -35,23 +41,25 @@ Button sign_up_button;
         categories.add("cleaner");
         categories.add("food services");
         categories.add("Baby Sitter");
-
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
-//        sign_up_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(WorkerRegistrationActivity.this, MainActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
 
-        
+        sign_up_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WorkerRegistrationActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
     }
 
     @Override
@@ -59,11 +67,8 @@ Button sign_up_button;
 
     }
 
-
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
 
     }
 

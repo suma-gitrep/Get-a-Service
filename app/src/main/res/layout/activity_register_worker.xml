@@ -212,7 +212,7 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/quoteTextArea"
+            android:id="@+id/address"
             android:enabled="true"
             android:minLines="6"
             android:maxLines="6"

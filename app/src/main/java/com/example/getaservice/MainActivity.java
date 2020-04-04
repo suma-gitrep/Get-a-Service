@@ -3,19 +3,13 @@ package com.example.getaservice;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import com.example.getaservice.ui.home.HomeFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -32,6 +26,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements ExampleDialog.ExampleDialogListener{
@@ -41,62 +36,82 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
     FirebaseUser user;
     ProgressDialog PD;
     private Context an=this;
+    SharedPreferences.Editor edit;
 
+    SharedPreferences pref;
+    String email,usernametext,usertypestr;
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
+      //  FloatingActionButton fab = findViewById(R.id.fab);
         auth = FirebaseAuth.getInstance();
-
       //  user = auth.getCurrentUser();
 
         PD = new ProgressDialog(this);
-
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
         View header;
 
+        pref = getSharedPreferences("Login", 0);
+        // retrieving value from Registration
+         email = pref.getString("emaillogin", null);
+         usernametext=pref.getString("usernameheader",null);
+         usertypestr=pref.getString("usertypelogin",null);
+       // Log.d("emai",email);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         header = navigationView.getHeaderView(0);
         ImageView nav_head_image=header.findViewById(R.id.imageView);
-        ImageView editpic=header.findViewById(R.id.editpic);
-        editpic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        TextView headerTitle=header.findViewById(R.id.headertitle);
+        TextView headerSubtitle=header.findViewById(R.id.headersubtitle);
 
-                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+if(email!=null) {
+    nav_head_image.setImageResource(R.drawable.editprofile);
+    headerTitle.setText("Welcome "+usernametext);
+    headerSubtitle.setText(email);
+    nav_head_image.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(usertypestr!=null) {
+
+                Intent intent = new Intent(MainActivity.this, CustomerEditActivity.class);
                 startActivity(intent);
+            }
+            else{
 
             }
-        });
-        nav_head_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                
-            }
-        });
+        }
+    });
+
+
+}
+else {
+    nav_head_image.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+
+
+        }
+    });
+
+}
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -105,12 +120,9 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
                 .setDrawerLayout(drawer)
                 .build();
 
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
 
     }
 
@@ -128,11 +140,13 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         super.onOptionsItemSelected(item);
         switch(item.getItemId()){
             case R.id.action_logout:
+                SharedPreferences.Editor editor = pref.edit();
+                editor.remove("emaillogin");
+                editor.commit();
+                finish();
 
-                            Toast.makeText(MainActivity.this,"Successfully you loggedout of the app", Toast.LENGTH_LONG).show();
-
-
-break;
+                Toast.makeText(MainActivity.this,"Successfully you logged out of the app", Toast.LENGTH_LONG).show();
+                break;
 
         }
 

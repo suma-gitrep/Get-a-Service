@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +27,7 @@ public class SendFragment extends Fragment {
                 ViewModelProviders.of(this).get(SendViewModel.class);
         View root = inflater.inflate(R.layout.fragment_send, container, false);
         final TextView textView = root.findViewById(R.id.text_send);
-        final Button send=root.findViewById(R.id.sendBTN);
+        final ImageView send=root.findViewById(R.id.sendBTN);
 
 
 
