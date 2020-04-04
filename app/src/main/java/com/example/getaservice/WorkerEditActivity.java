@@ -25,7 +25,7 @@ public class WorkerEditActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(WorkerEditActivity.this, "Succesfully saved all user data", Toast.LENGTH_LONG).show();
+                Toast.makeText(WorkerEditActivity.this, "Succesfully  saved all user data", Toast.LENGTH_LONG).show();
 
 
                 Intent in=new Intent(getApplicationContext(), MainActivity.class);
