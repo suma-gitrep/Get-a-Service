@@ -107,14 +107,46 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                     Intent ob = new Intent(CustomerRegisterActivity.this, LoginActivity.class);
                     startActivity(ob);
                 }
-                btnLogin.setOnClickListener(new View.OnClickListener() {
-                    @Override            public void onClick(View view) {
-                        finish();
-                    }
-                });
+
             }
         });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override            public void onClick(View view) {
+                finish();
+            }
+            //                try {
+//                    if (password.length() > 0 && email.length() > 0) {
+//                        PD.show();
+//                        auth.createUserWithEmailAndPassword(email, password)
+//                                .addOnCompleteListener(CustomerRegisterActivity.this, new OnCompleteListener<AuthResult>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                                        if (!task.isSuccessful()) {
+//                                            Toast.makeText(
+//                                                    CustomerRegisterActivity.this,
+//                                                    "Authentication Failed",
+//                                                    Toast.LENGTH_LONG).show();
+//                                            Log.v("error", task.getResult().toString());
+//                                        } else {
+//                                            Intent intent = new Intent(CustomerRegisterActivity.this, MainActivity.class);
+//                                            startActivity(intent);
+//                                            finish();
+//                                        }
+//                                        PD.dismiss();
+//                                    }
+//                                });
+//                    } else {
+//                        Toast.makeText(
+//                                CustomerRegisterActivity.this,
+//                                "Fill All Fields",
+//                                Toast.LENGTH_LONG).show();
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+        
 
+        });
 
 
 
