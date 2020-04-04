@@ -76,7 +76,6 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                 if(inputEmail.getText().length()<=0){
                     Toast.makeText(CustomerRegisterActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
                 }
-
                 else if( inputPassword.getText().length()<=0){
                     Toast.makeText(CustomerRegisterActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
                 }
@@ -93,6 +92,7 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                 else if( addressDetails.getText().length()<=0){
                     Toast.makeText(CustomerRegisterActivity.this, "Enter address details", Toast.LENGTH_SHORT).show();
                 }
+
                 else{
                     editor.putString("Name", usernamestr);
                     editor.putString("Email",emailstr);
@@ -107,14 +107,7 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                     Intent ob = new Intent(CustomerRegisterActivity.this, LoginActivity.class);
                     startActivity(ob);
                 }
-
-            }
-        });
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override            public void onClick(View view) {
-                finish();
-            }
-            //                try {
+//                try {
 //                    if (password.length() > 0 && email.length() > 0) {
 //                        PD.show();
 //                        auth.createUserWithEmailAndPassword(email, password)
@@ -144,10 +137,14 @@ public class CustomerRegisterActivity extends AppCompatActivity {
 //                } catch (Exception e) {
 //                    e.printStackTrace();
 //                }
-        
-
+            }
         });
 
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
     }
