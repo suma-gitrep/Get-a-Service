@@ -76,7 +76,23 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                 if(inputEmail.getText().length()<=0){
                     Toast.makeText(CustomerRegisterActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
                 }
-                
+
+                else if( inputPassword.getText().length()<=0){
+                    Toast.makeText(CustomerRegisterActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
+                }
+                else if( username.getText().length()<=0){
+                    Toast.makeText(CustomerRegisterActivity.this, "Enter username", Toast.LENGTH_SHORT).show();
+                }
+                else if( confrimPassword.getText().length()<=0){
+                    Toast.makeText(CustomerRegisterActivity.this, "Enter confrim password", Toast.LENGTH_SHORT).show();
+                }
+                else if( phoneNumber.getText().length()<=0){
+                    Toast.makeText(CustomerRegisterActivity.this, "Enter phone number", Toast.LENGTH_SHORT).show();
+                }
+
+                else if( addressDetails.getText().length()<=0){
+                    Toast.makeText(CustomerRegisterActivity.this, "Enter address details", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
