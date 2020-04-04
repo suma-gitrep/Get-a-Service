@@ -1,9 +1,3 @@
-
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -15,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Signup As Worker"
+        android:text="Get A Service"
         android:gravity="center"
         android:textAllCaps="true"
         android:textSize="16sp"
@@ -33,6 +27,7 @@
             android:hint="Username"
             android:maxLines="1"
             android:singleLine="true"
+
             android:textColor="@color/colorPrimary" />
 
 
@@ -61,7 +56,27 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+
+        <EditText
+            android:id="@+id/confirmpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:hint="Confirm Password"
+            android:imeActionId="@+id/login"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary"
+            tools:ignore="InvalidImeActionId" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -81,7 +96,6 @@
 
 
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -93,108 +107,6 @@
             android:layout_height="wrap_content"
             android:hint="Phone number"
             android:inputType="phone"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/colorPrimary" />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/linear_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <!-- Text Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:text="Category"
-            android:padding="10dp"
-            android:textSize="15dp"
-            />
-
-        <!-- Spinner Element -->
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            />
-    </LinearLayout>
-
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Experience Details"
-    android:textSize="17dp"
-    android:textColor="@color/colorPrimary"
-    />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-
-        <EditText
-            android:id="@+id/experience"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Experience"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/colorPrimary" />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-
-        <EditText
-            android:id="@+id/certifications"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Certifications"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/colorPrimary" />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:switchMinWidth="75dp"
-        android:textColor="@color/colorPrimary"
-        android:text="Availability:"
-        android:checked="true"
-        android:layout_gravity="left"
-        android:textSize="17dp"
-        android:textOff="OFF"
-        android:textOn="ON"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-
-        <EditText
-            android:id="@+id/charges"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Your Charges $/hr"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/colorPrimary" />
@@ -229,30 +141,27 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <Button
-        android:id="@+id/sign_up_button"
+        android:id="@+id/save_button"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@color/colorPrimary"
-        android:text="Register"
+        android:text="SAVE"
         android:textStyle="bold" />
 
 
     <!-- Link to Login Screen -->
 
 
-    <TextView
-        android:id="@+id/sign_in_button"
+    <Button
+        android:id="@+id/cancelbutton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dip"
         android:gravity="center"
-        android:text="Already a user? Sign In here!"
+        android:text="Cancel"
         />
 </LinearLayout>
-
-</ScrollView>
 
