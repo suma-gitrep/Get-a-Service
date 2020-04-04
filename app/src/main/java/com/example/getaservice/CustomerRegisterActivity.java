@@ -93,6 +93,20 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                 else if( addressDetails.getText().length()<=0){
                     Toast.makeText(CustomerRegisterActivity.this, "Enter address details", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    editor.putString("Name", usernamestr);
+                    editor.putString("Email",emailstr);
+                    editor.putString("Password",passwordstr);
+                    editor.putString("confirmpass",confrimpasswordstr);
+                    editor.putString("address",addressstr);
+                    editor.putString("phone",phonestr);
+                    editor.putString("usertype","customer");
+                    editor.commit();   // commit the values
+
+                    // after saving the value open next activity
+                    Intent ob = new Intent(CustomerRegisterActivity.this, LoginActivity.class);
+                    startActivity(ob);
+                }
             }
         });
 
