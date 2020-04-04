@@ -32,11 +32,14 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
     @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_and_change_password);
+
         PD = new ProgressDialog(this);
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
+
         auth = FirebaseAuth.getInstance();
+
         edtMode = (EditText) findViewById(R.id.mode);
         txtMode = (TextView) findViewById(R.id.title);
         submit = (Button) findViewById(R.id.submit_button);
@@ -44,9 +47,7 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
 
         final int mode = getIntent().getIntExtra("Mode", 0);
         if (mode == 0) {
-
             txtMode.setText("Forget Password");
-
             edtMode.setHint("Enter Registered Email");
             labelMode.setHint("Enter Registered Email");
         } else if (mode == 1) {
@@ -55,15 +56,12 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
             labelMode.setHint("Enter New Password");
         } else if (mode == 2) {
             txtMode.setText("Change Email");
-            edtMode.setHint("Enter the New Email");
-            labelMode.setHint("Enter the New Email");
+            edtMode.setHint("Enter New Email");
+            labelMode.setHint("Enter New Email");
         } else {
-
             txtMode.setText("Delete User");
             edtMode.setVisibility(View.GONE);
-
         }
-
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override            public void onClick(View view) {
@@ -78,14 +76,10 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
         FirebaseUser user = auth.getCurrentUser();
         final String modeStr = edtMode.getText().toString();
         if (mode == 0) {
-
             if (TextUtils.isEmpty(modeStr)) {
-
                 edtMode.setError("Value Required");
             } else {
-
                 PD.show();
-
                 auth.sendPasswordResetEmail(modeStr).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override                    public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
@@ -123,8 +117,7 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
                 PD.show();
                 user.updateEmail(modeStr)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                            @Override                            public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(ForgetAndChangePasswordActivity.this, "Email address is updated.", Toast.LENGTH_LONG).show();
                                 } else {
@@ -134,8 +127,7 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
                             }
                         });
             }
-        }
-         else {
+        } else {
             if (user != null) {
                 PD.show();
                 user.delete()

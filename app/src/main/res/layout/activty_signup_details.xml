@@ -6,15 +6,27 @@
     android:layout_height="match_parent"
 
     >
-    <TextView
-        android:layout_width="300dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:padding="10dp"
-        android:text="Want labour services online? Book a worker through this app easily and get
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:src="@drawable/customer"
+            />
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:text="Want labour services online? Book a worker through this app easily and get
 your work done within no time!"
-        android:gravity="center"
-        />
+            android:gravity="center"
+            />
+    </LinearLayout>
+
     <Button
         android:id="@+id/regcustomer"
         android:layout_width="wrap_content"
@@ -24,6 +36,16 @@ your work done within no time!"
         android:padding="10dp"
         android:background="@color/colorPrimary"
         />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:src="@drawable/serviceworker"
+            />
     <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -34,6 +56,7 @@ your pay within no time!"
         android:gravity="center"
 
         />
+    </LinearLayout>
     <Button
         android:id="@+id/regworker"
         android:layout_width="wrap_content"

@@ -1,7 +1,6 @@
 package com.example.getaservice.ui.share;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +29,7 @@ public class ShareFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_share, container, false);
         final TextView textView = root.findViewById(R.id.text_share);
 
-        final ImageView share=(ImageView)root.findViewById(R.id.share);
+        final ImageView share=(ImageView) root.findViewById(R.id.share);
 
 
         share.setOnClickListener(new View.OnClickListener() {
