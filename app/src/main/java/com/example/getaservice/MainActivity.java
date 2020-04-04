@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,8 +39,9 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
     private Context an=this;
     SharedPreferences.Editor edit;
 
-    SharedPreferences pref;
+    SharedPreferences pref,workpref;
     String email,usernametext,usertypestr;
+    String wemail,wusername,wutpe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,15 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
          email = pref.getString("emaillogin", null);
          usernametext=pref.getString("usernameheader",null);
          usertypestr=pref.getString("usertypelogin",null);
-       // Log.d("emai",email);
+
+
+         workpref=getSharedPreferences("workerLogin",0);
+
+         wemail=workpref.getString("workeremaillogin",null);
+         wusername=workpref.getString("workerusernamelogin",null);
+         wutpe=workpref.getString("wusertype",null);
+
+
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -78,40 +88,74 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         TextView headerTitle=header.findViewById(R.id.headertitle);
         TextView headerSubtitle=header.findViewById(R.id.headersubtitle);
 
-if(email!=null) {
-    nav_head_image.setImageResource(R.drawable.editprofile);
-    headerTitle.setText("Welcome "+usernametext);
-    headerSubtitle.setText(email);
-    nav_head_image.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+
+
+            if (email!=null||wemail!=null) {
+
+            nav_head_image.setImageResource(R.drawable.editprofile);
+            headerTitle.setText("Welcome " + usernametext);
+            headerSubtitle.setText(email);
             if(usertypestr!=null) {
+                nav_head_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, CustomerEditActivity.class);
-                startActivity(intent);
+
+                        Intent intent = new Intent(MainActivity.this, CustomerEditActivity.class);
+                        startActivity(intent);
+
+
+                    }
+                });
+
+
             }
-            else{
+            else {
+                nav_head_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(MainActivity.this, WorkerEditActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
 
             }
 
-        }
-    });
 
+            }
+//           if (wutpe!=null) {
+//                nav_head_image.setImageResource(R.drawable.editprofile);
+//                headerTitle.setText("Welcome " + wusername);
+//                headerSubtitle.setText(wemail);
+//                nav_head_image.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        Intent intent = new Intent(MainActivity.this, WorkerEditActivity.class);
+//                        startActivity(intent);
+//
+//
+//                    }
+//                });
+//
+//            }
 
-}
 else {
-    nav_head_image.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+                nav_head_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("worker", "10");
 
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
 
 
-        }
-    });
+                    }
+                });
 
-}
+            }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
