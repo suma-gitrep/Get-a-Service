@@ -38,6 +38,41 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override            public void onClick(View view) {
 
+//                final String email = inputEmail.getText().toString();
+//                final String password = inputPassword.getText().toString();
+//
+//                try {
+//
+//                    if (password.length() > 0 && email.length() > 0) {
+//                        PD.show();
+//                        auth.signInWithEmailAndPassword(email, password)
+//                                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                                        if (!task.isSuccessful()) {
+//                                            Toast.makeText(
+//                                                    LoginActivity.this,
+//                                                    "Authentication Failed",
+//                                                    Toast.LENGTH_LONG).show();
+//                                            Log.v("error", task.getResult().toString());
+//                                        } else {
+//                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                            startActivity(intent);
+//                                            finish();
+//                                        }
+//                                        PD.dismiss();
+//                                    }
+//                                });
+//                    } else {
+//                        Toast.makeText(
+//                                LoginActivity.this,
+//                                "Fill All Fields",
+//                                Toast.LENGTH_LONG).show();
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+
 
 
 
