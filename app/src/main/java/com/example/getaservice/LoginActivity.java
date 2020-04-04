@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private ProgressDialog PD;
     private TextView btnSignUp;
-    SharedPreferences regpref, loginpref;
+    SharedPreferences regpref, loginpref, workreg,workerlogin;
     SharedPreferences.Editor editor;
 
 
@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         PD.setCanceledOnTouchOutside(false);
         auth = FirebaseAuth.getInstance();
         loginpref = getSharedPreferences("Login", 0);
-
-        editor = loginpref.edit();
+        workerlogin=getSharedPreferences("workerLogin",0);
+      //  editor = loginpref.edit();
 
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
@@ -91,8 +91,17 @@ public class LoginActivity extends AppCompatActivity {
                 String passwordsh = regpref.getString("Password", null);
                 String usernamesh = regpref.getString("Name", null);
                 String usertypestr=regpref.getString("usertype",null);
-                Log.d("shared", emailsh);
-                Log.d("shared", passwordsh);
+               // Log.d("shared", emailsh);
+              //  Log.d("shared", passwordsh);
+
+                workreg=getSharedPreferences("WorkerRegistration", 0);
+
+
+                String workername=workreg.getString("workerName",null);
+                String workerpass=workreg.getString("workerPassword",null);
+
+                String workeremail=workreg.getString("workerEmail",null);
+                String utypestr=workreg.getString("wusertype",null);
 
                 if (inputEmail.getText().toString().length() <= 0) {
                     Toast.makeText(LoginActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
@@ -102,14 +111,34 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else {
 
+                    if (usertypestr!=null) {
+                        if (email.equalsIgnoreCase(emailsh) && password.equalsIgnoreCase(passwordsh)) {
 
-                    if (email.equalsIgnoreCase(emailsh) && password.equalsIgnoreCase(passwordsh)) {
+                            editor = loginpref.edit();
 
+                            editor.putString("emaillogin", email);
+                            editor.putString("usernameheader", usernamesh);
+                            editor.putString("usertypelogin", usertypestr);
+                            editor.commit();
+                            Toast.makeText(
+                                    LoginActivity.this,
+                                    "logged in successfully",
+                                    Toast.LENGTH_LONG).show();
 
-                        editor.putString("emaillogin", email);
-                        editor.putString("usernameheader", usernamesh);
-                        editor.putString("usertypelogin",usertypestr);
-                        editor.commit();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            //  finish();
+                        } else {
+
+                            Toast.makeText(LoginActivity.this, "wrong email and password details", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else{
+
+                        editor=workerlogin.edit();
+                        editor.putString("workeremaillogin",workeremail);
+                        editor.putString("workerusernamelogin",workername);
+                        editor.putString("wusertype",utypestr);
                         Toast.makeText(
                                 LoginActivity.this,
                                 "logged in successfully",
@@ -117,12 +146,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
-                        //  finish();
-                    } else {
-
-                        Toast.makeText(LoginActivity.this, "wrong email and password details", Toast.LENGTH_LONG).show();
                     }
                 }
+
             }
         });
 
