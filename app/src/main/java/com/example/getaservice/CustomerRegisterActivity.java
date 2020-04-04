@@ -107,6 +107,11 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                     Intent ob = new Intent(CustomerRegisterActivity.this, LoginActivity.class);
                     startActivity(ob);
                 }
+                btnLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override            public void onClick(View view) {
+                        finish();
+                    }
+                });
             }
         });
 
