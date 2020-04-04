@@ -189,12 +189,13 @@ else {
                 editor.commit();
                 finish();
 
-                Toast.makeText(MainActivity.this,"Successfully you logged out of the app", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"Successfully logged out of the app", Toast.LENGTH_LONG).show();
                 break;
 
         }
 
         return super.onOptionsItemSelected(item);
+
     }
 
 
