@@ -129,11 +129,10 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         super.onOptionsItemSelected(item);
         switch(item.getItemId()){
             case R.id.action_logout:
+                Toast.makeText(MainActivity.this,"Successfully you loggedout of the app", Toast.LENGTH_LONG).show();
 
-                            Toast.makeText(MainActivity.this,"Successfully you loggedout of the app", Toast.LENGTH_LONG).show();
 
-
-break;
+                break;
 
         }
 
