@@ -20,25 +20,26 @@ import java.util.List;
 
 public class WorkerEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    Button save,cancel;
+    Button save, cancel;
     Shared shared;
 
-    EditText username,password,email,phonenumber,experience,certification,charges,address;
+    EditText username, password, email, phonenumber, experience, certification, charges, address;
     Switch availability;
 
-    @Override    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editworkerprofile);
         shared = new Shared(WorkerEditActivity.this);
-        save=findViewById(R.id.savebutton);
-        cancel=findViewById(R.id.cancel);
+        save = findViewById(R.id.savebutton);
+        cancel = findViewById(R.id.cancel);
 
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
-        username=(EditText)findViewById(R.id.userName);
-        address=(EditText)findViewById(R.id.address);
-        phonenumber=(EditText)findViewById(R.id.phone);
-        charges=(EditText)findViewById(R.id.charges);
+        username = (EditText) findViewById(R.id.userName);
+        address = (EditText) findViewById(R.id.address);
+        phonenumber = (EditText) findViewById(R.id.phone);
+        charges = (EditText) findViewById(R.id.charges);
 
         experience = (EditText) findViewById(R.id.experience);
         certification = (EditText) findViewById(R.id.certifications);
@@ -74,10 +75,9 @@ public class WorkerEditActivity extends AppCompatActivity implements AdapterView
         charges.setText(workermodel.getChargestr());
         experience.setText(workermodel.getExperiencestr());
         certification.setText(workermodel.getCertificationstr());
-        if(workermodel.getStatus().equalsIgnoreCase("yes")){
+        if (workermodel.getStatus().equalsIgnoreCase("yes")) {
             availability.setChecked(true);
-        }
-        else {
+        } else {
             availability.setChecked(false);
 
         }
@@ -90,7 +90,7 @@ public class WorkerEditActivity extends AppCompatActivity implements AdapterView
                 Toast.makeText(WorkerEditActivity.this, "Succesfully  saved all user data", Toast.LENGTH_LONG).show();
 
 
-                Intent in=new Intent(getApplicationContext(), MainActivity.class);
+                Intent in = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in);
 
             }
@@ -104,7 +104,7 @@ public class WorkerEditActivity extends AppCompatActivity implements AdapterView
                         WorkerEditActivity.this,
                         "Cancelled to save the data",
                         Toast.LENGTH_LONG).show();
-                Intent in=new Intent(getApplicationContext(), MainActivity.class);
+                Intent in = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(in);
 
             }

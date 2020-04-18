@@ -94,40 +94,6 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
 
-        /*try {
-            Intent intent = getIntent();
-            usertype = intent.getStringExtra("usertype");
-            if (usertype.equals("worker")) {
-                name = intent.getStringExtra("name");
-                email = intent.getStringExtra("email");
-                pass = intent.getStringExtra("password");
-                phone = intent.getStringExtra("phone");
-                certification = intent.getStringExtra("certification");
-                address = intent.getStringExtra("address");
-                cate = intent.getStringExtra("category");
-                experience = intent.getStringExtra("experience");
-                charges = intent.getStringExtra("charges");
-                status = intent.getStringExtra("status");
-            } else {
-                name = intent.getStringExtra("name");
-                email = intent.getStringExtra("email");
-                pass = intent.getStringExtra("password");
-                phone = intent.getStringExtra("phone");
-                confirm = intent.getStringExtra("confirm");
-                address = intent.getStringExtra("address");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }*/
-
-
-
-       /* if (email != null) {
-            nav_head_image.setImageResource(R.drawable.editprofile);
-            headerTitle.setText("Welcome " + name);
-            headerSubtitle.setText(email);
-        }*/
-
         nav_head_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
