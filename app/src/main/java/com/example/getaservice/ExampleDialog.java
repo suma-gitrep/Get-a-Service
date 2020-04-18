@@ -62,7 +62,7 @@ public class  ExampleDialog extends AppCompatDialogFragment {
         super.onAttach(context);
 
 
-        
+
         try {
             listener = (ExampleDialogListener) context;
         } catch (ClassCastException e) {
