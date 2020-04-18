@@ -18,8 +18,19 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.getaservice.BookingModel;
 import com.example.getaservice.R;
+import com.example.getaservice.Shared;
+import com.example.getaservice.Workermodel;
 import com.example.getaservice.adapter.BookingsAdater;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 public class BookingFragment extends Fragment {
 
@@ -27,10 +38,9 @@ public class BookingFragment extends Fragment {
     private RecyclerView rv;
     BookingsAdater choiceAdapter = null;
     private GestureDetectorCompat detector = null;
-
-    private static String[] spacecrafts={"JHON MARKER","CHRLES HOOT","MICHAEL","SCOTT","ROGER WLLIAMS","KATE HELLIO"};
-
-
+    BookingsAdater bookingsAdater;
+    Shared shared;
+    ArrayList<BookingModel> bookingModelArrayList = new ArrayList<BookingModel>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,55 +48,73 @@ public class BookingFragment extends Fragment {
                 ViewModelProviders.of(this).get(BookingViewModel.class);
         View root = inflater.inflate(R.layout.fragment_booking, container, false);
         rv= (RecyclerView) root.findViewById(R.id.interplanettary_RV);
+        shared = new Shared(getActivity());
 
         //LAYOUT MANAGER
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //ADAPTER
-        rv.setAdapter(new BookingsAdater(getActivity(),spacecrafts));
+        getBookings();
 
-        detector = new GestureDetectorCompat(getActivity(), new BookingFragment.RecyclerViewOnGestureListener());
-
-        rv.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                return detector.onTouchEvent(e);
-            }
-        });
-
-        bookingViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-            }
-        });
         return root;
 
 
 
     }
-    class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
 
-        //ontap to list_item remove the item from the list
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            View view = rv.findChildViewUnder(e.getX(), e.getY());
-            if (view != null) {
-                RecyclerView.ViewHolder holder = rv.getChildViewHolder(view);
-                if (holder instanceof BookingsAdater.RecyclerVH) {
-                    int position = holder.getAdapterPosition();
 
-                    // handling single tap.
-                    Log.d("click", "clicked on item " + position);
-                    // ChoiceModel myModel = ChoiceModel.getSingleton();
-                    Toast toast = Toast.makeText(getActivity(),"Clicked on "
-                            , Toast.LENGTH_SHORT);
-
-                    toast.show();
-                    return true;
+    public void getBookings() {
+        bookingsAdater=new BookingsAdater(getActivity(), bookingModelArrayList);
+        rv.setAdapter(bookingsAdater);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Bookings");
+        bookingModelArrayList.clear();
+        ChildEventListener childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                // A new data item has been added, add it to the list
+                // message = dataSnapshot.getValue(Message.class);
+                //   messageList.add(message);
+                BookingModel bookingModel = dataSnapshot.getValue(BookingModel.class);
+                String userDetails = shared.getWorkerModel();
+                Workermodel workermodel = new Gson().fromJson(userDetails, Workermodel.class);
+                if(bookingModel.getCustomer().equals(workermodel.getName())){
+                    bookingModelArrayList.add(bookingModel);
+                    bookingsAdater.notifyDataSetChanged();
                 }
             }
-            return false;
-        }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                // Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+
+                // A data item has changed
+                //  Message message = dataSnapshot.getValue(Message.class);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                // Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
+
+                // A data item has been removed
+                //Message message = dataSnapshot.getValue(Message.class);
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+                //  Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
+
+                // A data item has changed position
+                //    Comment movedComment = dataSnapshot.getValue(Comment.class);
+                //    Message message = dataSnapshot.getValue(Message.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Log.w(TAG, "onCancelled", databaseError.toException());
+                //Toast.makeText(mContext, "Failed to load data.", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        reference.addChildEventListener(childEventListener);
     }
 
 }

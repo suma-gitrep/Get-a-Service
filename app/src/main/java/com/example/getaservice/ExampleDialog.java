@@ -51,8 +51,8 @@ public class  ExampleDialog extends AppCompatDialogFragment {
                     }
                 });
 
-        editTextUsername = view.findViewById(R.id.edit_username);
-        editTextPassword = view.findViewById(R.id.edit_password);
+        /*editTextUsername = view.findViewById(R.id.edit_username);
+        editTextPassword = view.findViewById(R.id.edit_password);*/
 
         return builder.create();
     }

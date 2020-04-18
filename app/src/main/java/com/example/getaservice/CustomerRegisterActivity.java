@@ -16,19 +16,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+
+//import com.google.firebase.auth.AuthResult;
+//import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class CustomerRegisterActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword,confrimPassword,username,phoneNumber,addressDetails;
-    private FirebaseAuth auth;
+   //private FirebaseAuth auth;
     private Button btnSignUp;
     private ProgressDialog PD;
     private TextView  btnLogin;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-
+FirebaseDatabase rootNode;
+DatabaseReference reference;
 
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +48,12 @@ public class CustomerRegisterActivity extends AppCompatActivity {
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
 
-        auth = FirebaseAuth.getInstance();
+       // auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(CustomerRegisterActivity.this, MainActivity.class));
-            finish();
-        }
+//        if (auth.getCurrentUser() != null) {
+//            startActivity(new Intent(CustomerRegisterActivity.this, MainActivity.class));
+//            finish();
+//        }
 
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
@@ -73,70 +81,74 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                 final String phonestr=phoneNumber.getText().toString();
                 final String addressstr=addressDetails.getText().toString();
 
-                if(inputEmail.getText().length()<=0){
-                    Toast.makeText(CustomerRegisterActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
+                 if( username.getText().length()<=0){
+                    username.setError("please enter username");
                 }
-                else if( inputPassword.getText().length()<=0){
-                    Toast.makeText(CustomerRegisterActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
-                }
-                else if( username.getText().length()<=0){
-                    Toast.makeText(CustomerRegisterActivity.this, "Enter username", Toast.LENGTH_SHORT).show();
-                }
+                 else if( inputPassword.getText().length()<=0){
+                     inputPassword.setError("please enter password");
+                 }
+
+
                 else if( confrimPassword.getText().length()<=0){
-                    Toast.makeText(CustomerRegisterActivity.this, "Enter confrim password", Toast.LENGTH_SHORT).show();
+                    confrimPassword.setError("please enter confrimPassword");
+
                 }
-                else if( phoneNumber.getText().length()<=0){
-                    Toast.makeText(CustomerRegisterActivity.this, "Enter phone number", Toast.LENGTH_SHORT).show();
+                 else if(inputEmail.getText().length()<=0){
+                     inputEmail.setError("please enter email");
+                 }
+
+                 else if( phoneNumber.getText().length()<=0){
+                    phoneNumber.setError("please enter phoneNumber");
+
                 }
 
                 else if( addressDetails.getText().length()<=0){
-                    Toast.makeText(CustomerRegisterActivity.this, "Enter address details", Toast.LENGTH_SHORT).show();
+                    addressDetails.setError("please enter addressDetails");
+
                 }
 
                 else{
-                    editor.putString("Name", usernamestr);
-                    editor.putString("Email",emailstr);
-                    editor.putString("Password",passwordstr);
-                    editor.putString("confirmpass",confrimpasswordstr);
-                    editor.putString("address",addressstr);
-                    editor.putString("phone",phonestr);
-                    editor.putString("usertype","customer");
-                    editor.commit();   // commit the values
 
-                    // after saving the value open next activity
-                    Intent ob = new Intent(CustomerRegisterActivity.this, LoginActivity.class);
-                    startActivity(ob);
+                    DatabaseReference refer = FirebaseDatabase.getInstance().getReference("Users");
+                    Query checkUser = refer.orderByChild("name").equalTo(usernamestr);
+                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                Toast.makeText(CustomerRegisterActivity.this, "username already exists", Toast.LENGTH_LONG).show();
+
+
+                            } else {
+
+                                rootNode= FirebaseDatabase.getInstance();
+                                reference=rootNode.getReference("Users");
+                               // CustomerModel cust= new CustomerModel(usernamestr,emailstr,passwordstr,confrimpasswordstr,addressstr,phonestr,"customer");
+                               Workermodel workermodel = new Workermodel(usernamestr,passwordstr,emailstr,phonestr,"","","",addressstr,"","","customer");
+                                reference.child(usernamestr).setValue(workermodel);
+
+                                Intent ob = new Intent(CustomerRegisterActivity.this, LoginActivity.class);
+                                startActivity(ob);
+                                finish();
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+
+
+                    });
+
+
+
+
                 }
-//                try {
-//                    if (password.length() > 0 && email.length() > 0) {
-//                        PD.show();
-//                        auth.createUserWithEmailAndPassword(email, password)
-//                                .addOnCompleteListener(CustomerRegisterActivity.this, new OnCompleteListener<AuthResult>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                                        if (!task.isSuccessful()) {
-//                                            Toast.makeText(
-//                                                    CustomerRegisterActivity.this,
-//                                                    "Authentication Failed",
-//                                                    Toast.LENGTH_LONG).show();
-//                                            Log.v("error", task.getResult().toString());
-//                                        } else {
-//                                            Intent intent = new Intent(CustomerRegisterActivity.this, MainActivity.class);
-//                                            startActivity(intent);
-//                                            finish();
-//                                        }
-//                                        PD.dismiss();
-//                                    }
-//                                });
-//                    } else {
-//                        Toast.makeText(
-//                                CustomerRegisterActivity.this,
-//                                "Fill All Fields",
-//                                Toast.LENGTH_LONG).show();
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
+
+
+
+
             }
         });
 

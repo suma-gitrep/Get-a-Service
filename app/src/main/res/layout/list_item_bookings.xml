@@ -50,11 +50,34 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Worker Name     :"
+
+                />
+            <TextView
+                android:id="@+id/wnameTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jhon Markers"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Appointment time  :"
 
                 />
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/timeTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4th FEB 2020"
@@ -73,14 +96,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Time                         :"
+                android:text="Booking Day                 :"
 
                 />
             <TextView
-                android:id="@+id/nam"
+                android:id="@+id/dayTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4PM"
+                android:text="Thursday"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
 
@@ -101,6 +124,7 @@
 
                 />
             <TextView
+                android:id="@+id/addressTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1115 N college Drive, #108 Horizons west Apartments, maryville, MO 64468 "
@@ -124,6 +148,7 @@
 
                 />
             <TextView
+                android:id="@+id/phoneTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1086446809 "
