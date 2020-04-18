@@ -24,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(SignUpActivity.this, CustomerRegisterActivity.class);
                 startActivity(intent);
-               // finish();
+                // finish();
 
 
             }
