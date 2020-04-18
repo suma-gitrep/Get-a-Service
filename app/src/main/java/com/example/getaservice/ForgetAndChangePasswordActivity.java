@@ -73,8 +73,11 @@ public class ForgetAndChangePasswordActivity extends AppCompatActivity {
 
     private void callFunction(int mode) {
 
+
         FirebaseUser user = auth.getCurrentUser();
+
         final String modeStr = edtMode.getText().toString();
+        
         if (mode == 0) {
             if (TextUtils.isEmpty(modeStr)) {
                 edtMode.setError("Value Required");
