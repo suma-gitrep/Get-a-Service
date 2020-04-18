@@ -125,22 +125,22 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
 
 
             }
-           if (wutpe!=null) {
-                nav_head_image.setImageResource(R.drawable.editprofile);
-                headerTitle.setText("Welcome " + wusername);
-                headerSubtitle.setText(wemail);
-                nav_head_image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent intent = new Intent(MainActivity.this, WorkerEditActivity.class);
-                        startActivity(intent);
-
-
-                    }
-                });
-
-            }
+//           if (wutpe!=null) {
+//                nav_head_image.setImageResource(R.drawable.editprofile);
+//                headerTitle.setText("Welcome " + wusername);
+//                headerSubtitle.setText(wemail);
+//                nav_head_image.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        Intent intent = new Intent(MainActivity.this, WorkerEditActivity.class);
+//                        startActivity(intent);
+//
+//
+//                    }
+//                });
+//
+//            }
 
 else {
                 nav_head_image.setOnClickListener(new View.OnClickListener() {
