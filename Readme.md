@@ -1,6 +1,8 @@
 # Get-a-Service-Android-project
 
 <h1> App Name: Get-a-Service</h1>
+<h2>App Logo<h2>
+ 
 
 <h2>Team Members:</h2>
  <li>1. Suma Soma</li>
@@ -48,4 +50,8 @@ To run this app we need internet.
 </p>
 <h2>Sources used for our Project:</h2>
 <p>
+ 
+ <h2>Contribution Link:</h2>
+https://github.com/suma-gitrep/Get-a-Service/graphs/contributors
+
 
