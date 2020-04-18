@@ -27,7 +27,7 @@ Size: 1440*3040 in Genymotion</p>
 
 
 <h2> APK File:</h2>
-
+https://github.com/suma-gitrep/Get-a-Service/blob/master/app-debug.apk
 
 <h2>Installation Steps</h2>
 <ul>
