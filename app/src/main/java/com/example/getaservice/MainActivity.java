@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
     String email,usernametext,usertypestr;
     String wemail,wusername,wutpe;
     @Override
+
+    
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
