@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
+    android:id="@+id/mobile_navigation_duplicate"
     app:startDestination="@+id/nav_home">
 
     <fragment
@@ -10,12 +10,6 @@
         android:name="com.example.getaservice.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.getaservice.ui.Booking.BookingFragment"
-        android:label="@string/menu_booking"
-        tools:layout="@layout/fragment_booking" />
 
     <fragment
         android:id="@+id/nav_slideshow"

@@ -74,12 +74,13 @@
                     android:layout_height="wrap_content"
                     android:text="Category: "
                     />
+
                 <TextView
+                    android:id="@+id/categoryTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Plumber"
                     android:layout_marginLeft="10dp"
-                    />
+                    android:text="Plumber" />
             </LinearLayout>
 
 
@@ -101,12 +102,13 @@
                     android:layout_height="wrap_content"
                     android:text="Charges:"
                     />
+
                 <TextView
+                    android:id="@+id/chargesTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" 10$/hr"
                     android:layout_marginLeft="10dp"
-                    />
+                    android:text=" 10$/hr" />
             </LinearLayout>
 
             <LinearLayout
@@ -119,12 +121,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Timimgs:"
+                    android:text="experience:"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" M T W 10AM to 4PM"
+                    android:text=" experience"
+                    android:id="@+id/expeTV"
                     android:layout_marginLeft="10dp"
                     />
             </LinearLayout>
@@ -139,11 +142,12 @@
                 >
 
                 <Button
+                    android:id="@+id/bookBtn"
                     android:layout_width="100dp"
                     android:layout_height="35dp"
                     android:layout_marginTop="5dp"
-                    android:background="@color/colorPrimary"
 
+                    android:background="@color/colorPrimary"
                     android:text="Book Now" />
             </LinearLayout>
 

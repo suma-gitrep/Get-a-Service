@@ -9,10 +9,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,22 +29,26 @@ import java.util.List;
 public class WorkerRegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button sign_up_button;
 
+<<<<<<< Updated upstream
     EditText username,password,email,phonenumber,experience,certification,charges,address;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
+=======
+EditText username,password,email,phonenumber,experience,certification,charges,address;
+    Switch availability;
+>>>>>>> Stashed changes
 
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
     @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_worker);
 
 
-
-
         sign_up_button=(Button)findViewById(R.id.sign_up_button) ;
-
+availability=  (Switch) findViewById(R.id.switch1);
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-
 
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
@@ -55,7 +68,6 @@ public class WorkerRegistrationActivity extends AppCompatActivity implements Ada
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
 
@@ -71,25 +83,32 @@ public class WorkerRegistrationActivity extends AppCompatActivity implements Ada
 
 
 
-        pref = getSharedPreferences("WorkerRegistration", 0);
-        // get editor to edit in file
-        editor = pref.edit();
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
+                final String usernamestr= username.getText().toString();
+                final String passwordstr = password.getText().toString();
 
 
                 final String emailstr = email.getText().toString();
-                final String passwordstr = password.getText().toString();
-                final String usernamestr= username.getText().toString();
-                final String chargestr=charges.getText().toString();
-
                 final String phonestr=phonenumber.getText().toString();
-                final String addressstr=address.getText().toString();
+
                 final String experiencestr=experience.getText().toString();
                 final String certificationstr=certification.getText().toString();
+                final String chargestr=charges.getText().toString();
+
+                final String addressstr=address.getText().toString();
+
+                final String category = spinner.getSelectedItem().toString();
+                final String status;
+
+                if (availability.isChecked())
+                    status = "yes";
+                else
+                    status ="no";
+
 
 
                 if(email.getText().length()<=0){
@@ -119,29 +138,48 @@ public class WorkerRegistrationActivity extends AppCompatActivity implements Ada
                 }
 
                 else{
-                    editor.putString("workerName", usernamestr);
-                    editor.putString("workerEmail",emailstr);
-                    editor.putString("workerPassword",passwordstr);
-                    editor.putString("workeraddress",addressstr);
 
-                    editor.putString("workercharges",chargestr);
-                    editor.putString("workerphone",phonestr);
-                    editor.putString("workerexperience",experiencestr);
-                    editor.putString("workercertification",certificationstr);
 
-                    editor.putString("wusertype","Worker");
-                    editor.commit();   // commit the values
+                    DatabaseReference refer = FirebaseDatabase.getInstance().getReference("Users");
+                    Query checkUser = refer.orderByChild("name").equalTo(usernamestr);
+                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                Toast.makeText(WorkerRegistrationActivity.this, "username already exists", Toast.LENGTH_LONG).show();
 
-                    // after saving the value open next activity
-                    Intent ob = new Intent(WorkerRegistrationActivity.this, LoginActivity.class);
-                    startActivity(ob);
+
+                            } else {
+                                rootNode= FirebaseDatabase.getInstance();
+                                reference=rootNode.getReference("Users");
+                                Workermodel worke= new Workermodel(usernamestr, passwordstr, emailstr,  phonestr,  experiencestr,  certificationstr,  chargestr,  addressstr,  category,  status, "worker") ;
+                                reference.child(usernamestr).setValue(worke);
+
+                                    Intent ob = new Intent(WorkerRegistrationActivity.this, LoginActivity.class);
+                                    startActivity(ob);
+                                    finish();
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+
+
+                    });
+
+
+
+
                 }
 
 
 
             }
         });
-    }
+        }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

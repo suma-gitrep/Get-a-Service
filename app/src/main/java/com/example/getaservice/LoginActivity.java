@@ -11,34 +11,53 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
+//import com.google.firebase.auth.FirebaseAuth;
+
+//import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;
-    private FirebaseAuth auth;
+   // private FirebaseAuth auth;
     private Button btnLogin;
     private ProgressDialog PD;
     private TextView btnSignUp;
-    SharedPreferences regpref, loginpref, workreg,workerlogin;
-    SharedPreferences.Editor editor;
+    private Shared shared;
+   // SharedPreferences regpref, loginpref, workreg,workerlogin;
+   // SharedPreferences.Editor editor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+shared = new Shared(LoginActivity.this);
         PD = new ProgressDialog(this);
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
+<<<<<<< Updated upstream
         auth = FirebaseAuth.getInstance();
         loginpref = getSharedPreferences("Login", 0);
         workerlogin=getSharedPreferences("workerLogin",0);
         //  editor = loginpref.edit();
+=======
+       //auth = FirebaseAuth.getInstance();
+      //  loginpref = getSharedPreferences("Login", 0);
+      //  workerlogin=getSharedPreferences("workerLogin",0);
+      //  editor = loginpref.edit();
+>>>>>>> Stashed changes
 
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
@@ -50,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
+<<<<<<< Updated upstream
 //
 //                try {
 //
@@ -96,12 +116,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 workreg=getSharedPreferences("WorkerRegistration", 0);
 
+=======
+>>>>>>> Stashed changes
 
-                String workername=workreg.getString("workerName",null);
-                String workerpass=workreg.getString("workerPassword",null);
-
-                String workeremail=workreg.getString("workerEmail",null);
-                String utypestr=workreg.getString("wusertype",null);
 
                 if (inputEmail.getText().toString().length() <= 0) {
                     Toast.makeText(LoginActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
@@ -111,45 +128,120 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else {
 
-                    if (usertypestr!=null) {
-                        if (email.equalsIgnoreCase(emailsh) && password.equalsIgnoreCase(passwordsh)) {
 
-                            editor = loginpref.edit();
 
-                            editor.putString("emaillogin", email);
-                            editor.putString("usernameheader", usernamesh);
-                            editor.putString("usertypelogin", usertypestr);
-                            editor.commit();
-                            Toast.makeText(
-                                    LoginActivity.this,
-                                    "logged in successfully",
-                                    Toast.LENGTH_LONG).show();
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                    Query checkUser = reference.orderByChild("name").equalTo(email);
 
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            //  finish();
-                        } else {
+                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
 
-                            Toast.makeText(LoginActivity.this, "wrong email and password details", Toast.LENGTH_LONG).show();
+                                String passwordFromDB = dataSnapshot.child(email).child("passwordstr").getValue(String.class);
+                                String usertype=dataSnapshot.child(email).child("usertype").getValue(String.class);
+
+
+
+                                if (passwordFromDB.equals(password)) {
+
+                                    Workermodel workermodel = new Workermodel();
+                                    workermodel.setEmail(dataSnapshot.child(email).child("email").getValue(String.class));
+                                    workermodel.setName(dataSnapshot.child(email).child("name").getValue(String.class));
+                                    workermodel.setPasswordstr(dataSnapshot.child(email).child("passwordstr").getValue(String.class));
+                                    workermodel.setPhonestr(dataSnapshot.child(email).child("phonestr").getValue(String.class));
+                                    workermodel.setCategory(dataSnapshot.child(email).child("category").getValue(String.class));
+                                    workermodel.setExperiencestr(dataSnapshot.child(email).child("experiencestr").getValue(String.class));
+                                    workermodel.setCertificationstr(dataSnapshot.child(email).child("certificationstr").getValue(String.class));
+                                    workermodel.setStatus(dataSnapshot.child(email).child("status").getValue(String.class));
+                                    workermodel.setAddressstr(dataSnapshot.child(email).child("addressstr").getValue(String.class));
+                                    workermodel.setChargestr(dataSnapshot.child(email).child("chargestr").getValue(String.class));
+                                    workermodel.setUsertype(dataSnapshot.child(email).child("usertype").getValue(String.class));
+                                    Gson gson = new Gson();
+                                    shared.setWorkerModel(gson.toJson(workermodel));
+                                    shared.setIsUserLoggedIn("true");
+                                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                /*    if(usertype.equals("worker")){
+
+
+
+
+
+                                        String wemailDb = ;
+                                        String wusernameDb =dataSnapshot.child(email).child("name").getValue(String.class);
+                                        String wpasswordDb = );
+                                        String wphoneDb =dataSnapshot.child(email).child("phonestr").getValue(String.class);
+                                        String wcategoryDB = ;
+                                        String wexpDb =dataSnapshot.child(email).child("experiencestr").getValue(String.class);
+                                        String wcertiDB = dataSnapshot.child(email).child("certificationstr").getValue(String.class);
+                                        String wstatusDb =dataSnapshot.child(email).child("status").getValue(String.class);
+                                        String waddressDb = dataSnapshot.child(email).child("addressstr").getValue(String.class);
+                                        String wchargesDb =dataSnapshot.child(email).child("chargestr").getValue(String.class);
+                                         usertype =dataSnapshot.child(email).child("usertype").getValue(String.class);
+
+
+
+                                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                        intent.putExtra("name",wusernameDb);
+                                        intent.putExtra("email",wemailDb);
+                                        intent.putExtra("password",wpasswordDb);
+                                        intent.putExtra("phone",wphoneDb);
+                                        intent.putExtra("certification",wcertiDB);
+                                        intent.putExtra("address",waddressDb);
+                                        intent.putExtra("usertype",usertype);
+                                        intent.putExtra("category",wcategoryDB);
+                                        intent.putExtra("experience",wexpDb);
+                                        intent.putExtra("charges",wchargesDb);
+                                        intent.putExtra("status",wstatusDb);
+
+
+                                        startActivity(intent);
+
+                                    }*/
+//                                    else if(usertype.equals("customer")){
+//                                        String cusernameDb=dataSnapshot.child(email).child("name").getValue(String.class);
+//                                        String cemailDb = dataSnapshot.child(email).child("email").getValue(String.class);
+//                                        String cpasswordDb=dataSnapshot.child(email).child("passwordstr").getValue(String.class);
+//                                        String cphone=dataSnapshot.child(email).child("phonestr").getValue(String.class);
+//                                         usertype=dataSnapshot.child(email).child("usertype").getValue(String.class);
+//                                        String cconfirmDb=dataSnapshot.child(email).child("confirmpasswordstr").getValue(String.class);
+//                                        String caddressDb=dataSnapshot.child(email).child("usertype").getValue(String.class);
+//
+//
+//
+//                                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+//                                        intent.putExtra("name",cusernameDb);
+//                                        intent.putExtra("email",cemailDb);
+//                                        intent.putExtra("password",cpasswordDb);
+//                                        intent.putExtra("phone",cphone);
+//                                        intent.putExtra("confirm",cconfirmDb);
+//                                        intent.putExtra("address",caddressDb);
+//                                        intent.putExtra("usertype",usertype);
+//
+//
+//                                        startActivity(intent);
+//                                    }
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Invalid details", Toast.LENGTH_LONG).show();
+                                }
+                            } else {
+                                Toast.makeText(LoginActivity.this, "User not exists with provided details", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
-                    else{
 
-                        editor=workerlogin.edit();
-                        editor.putString("workeremaillogin",workeremail);
-                        editor.putString("workerusernamelogin",workername);
-                        editor.putString("wusertype",utypestr);
-                        Toast.makeText(
-                                LoginActivity.this,
-                                "logged in successfully",
-                                Toast.LENGTH_LONG).show();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        }
+                    });
+
                     }
+
                 }
 
-            }
+
         });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
