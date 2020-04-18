@@ -54,18 +54,11 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
 
     @SuppressLint("ResourceType")
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-<<<<<<< Updated upstream
-        //  FloatingActionButton fab = findViewById(R.id.fab);
-        auth = FirebaseAuth.getInstance();
-        //  user = auth.getCurrentUser();
-=======
         shared = new Shared(MainActivity.this);
         gson = new Gson();
         //  FloatingActionButton fab = findViewById(R.id.fab);
@@ -95,20 +88,12 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
             headerSubtitle.setText(R.string.nav_header_subtitle);
         }
 
->>>>>>> Stashed changes
 
         PD = new ProgressDialog(this);
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
 
-<<<<<<< Updated upstream
-        pref = getSharedPreferences("Login", 0);
-        // retrieving value from Registration
-        email = pref.getString("emaillogin", null);
-        usernametext=pref.getString("usernameheader",null);
-        usertypestr=pref.getString("usertypelogin",null);
-=======
         /*try {
             Intent intent = getIntent();
             usertype = intent.getStringExtra("usertype");
@@ -116,47 +101,26 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
                 name = intent.getStringExtra("name");
                 email = intent.getStringExtra("email");
                 pass = intent.getStringExtra("password");
->>>>>>> Stashed changes
-
                 phone = intent.getStringExtra("phone");
                 certification = intent.getStringExtra("certification");
                 address = intent.getStringExtra("address");
-
-<<<<<<< Updated upstream
-        workpref=getSharedPreferences("workerLogin",0);
-
-        wemail=workpref.getString("workeremaillogin",null);
-        wusername=workpref.getString("workerusernamelogin",null);
-        wutpe=workpref.getString("wusertype",null);
-=======
                 cate = intent.getStringExtra("category");
                 experience = intent.getStringExtra("experience");
-
                 charges = intent.getStringExtra("charges");
                 status = intent.getStringExtra("status");
->>>>>>> Stashed changes
-
-
             } else {
                 name = intent.getStringExtra("name");
                 email = intent.getStringExtra("email");
-
                 pass = intent.getStringExtra("password");
                 phone = intent.getStringExtra("phone");
                 confirm = intent.getStringExtra("confirm");
                 address = intent.getStringExtra("address");
-
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-
         }*/
 
 
-<<<<<<< Updated upstream
-        if (email!=null||wemail!=null) {
-=======
->>>>>>> Stashed changes
 
        /* if (email != null) {
             nav_head_image.setImageResource(R.drawable.editprofile);
@@ -182,10 +146,6 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
         });
 
 
-<<<<<<< Updated upstream
-        }
-=======
->>>>>>> Stashed changes
 //           if (wutpe!=null) {
 //                nav_head_image.setImageResource(R.drawable.editprofile);
 //                headerTitle.setText("Welcome " + wusername);
@@ -203,32 +163,11 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
 //
 //            }
 
-<<<<<<< Updated upstream
-        else {
-            nav_head_image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("worker", "10");
-
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent);
-
-
-                }
-            });
-
-        }
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-=======
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_slideshow,
->>>>>>> Stashed changes
                 R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();

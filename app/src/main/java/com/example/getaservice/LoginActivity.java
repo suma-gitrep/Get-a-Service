@@ -29,35 +29,28 @@ import com.google.gson.Gson;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;
-   // private FirebaseAuth auth;
+    // private FirebaseAuth auth;
     private Button btnLogin;
     private ProgressDialog PD;
     private TextView btnSignUp;
     private Shared shared;
-   // SharedPreferences regpref, loginpref, workreg,workerlogin;
-   // SharedPreferences.Editor editor;
+    // SharedPreferences regpref, loginpref, workreg,workerlogin;
+    // SharedPreferences.Editor editor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-shared = new Shared(LoginActivity.this);
+        shared = new Shared(LoginActivity.this);
         PD = new ProgressDialog(this);
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
-<<<<<<< Updated upstream
-        auth = FirebaseAuth.getInstance();
-        loginpref = getSharedPreferences("Login", 0);
-        workerlogin=getSharedPreferences("workerLogin",0);
+        //auth = FirebaseAuth.getInstance();
+        //  loginpref = getSharedPreferences("Login", 0);
+        //  workerlogin=getSharedPreferences("workerLogin",0);
         //  editor = loginpref.edit();
-=======
-       //auth = FirebaseAuth.getInstance();
-      //  loginpref = getSharedPreferences("Login", 0);
-      //  workerlogin=getSharedPreferences("workerLogin",0);
-      //  editor = loginpref.edit();
->>>>>>> Stashed changes
 
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
@@ -69,55 +62,6 @@ shared = new Shared(LoginActivity.this);
             public void onClick(View view) {
                 final String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
-<<<<<<< Updated upstream
-//
-//                try {
-//
-//                    if (password.length() > 0 && email.length() > 0) {
-//                        PD.show();
-//                        auth.signInWithEmailAndPassword(email, password)
-//                                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                                        if (!task.isSuccessful()) {
-//                                            Toast.makeText(
-//                                                    LoginActivity.this,
-//                                                    "Authentication Failed",
-//                                                    Toast.LENGTH_LONG).show();
-//                                            Log.v("error", task.getResult().toString());
-//                                        } else {
-//                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                            startActivity(intent);
-//                                            finish();
-//                                        }
-//                                        PD.dismiss();
-//                                    }
-//                                });
-//                    } else {
-//                        Toast.makeText(
-//                                LoginActivity.this,
-//                                "Fill All Fields",
-//                                Toast.LENGTH_LONG).show();
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-
-
-                regpref = getSharedPreferences("Registration", 0);
-                // retrieving value from Registration
-                // String name = pref.getString("Name", null);
-                String emailsh = regpref.getString("Email", null);
-                String passwordsh = regpref.getString("Password", null);
-                String usernamesh = regpref.getString("Name", null);
-                String usertypestr=regpref.getString("usertype",null);
-                // Log.d("shared", emailsh);
-                //  Log.d("shared", passwordsh);
-
-                workreg=getSharedPreferences("WorkerRegistration", 0);
-
-=======
->>>>>>> Stashed changes
 
 
                 if (inputEmail.getText().toString().length() <= 0) {
@@ -164,11 +108,6 @@ shared = new Shared(LoginActivity.this);
                                     startActivity(intent);
                                     finish();
                                 /*    if(usertype.equals("worker")){
-
-
-
-
-
                                         String wemailDb = ;
                                         String wusernameDb =dataSnapshot.child(email).child("name").getValue(String.class);
                                         String wpasswordDb = );
@@ -180,9 +119,6 @@ shared = new Shared(LoginActivity.this);
                                         String waddressDb = dataSnapshot.child(email).child("addressstr").getValue(String.class);
                                         String wchargesDb =dataSnapshot.child(email).child("chargestr").getValue(String.class);
                                          usertype =dataSnapshot.child(email).child("usertype").getValue(String.class);
-
-
-
                                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                                         intent.putExtra("name",wusernameDb);
                                         intent.putExtra("email",wemailDb);
@@ -195,10 +131,7 @@ shared = new Shared(LoginActivity.this);
                                         intent.putExtra("experience",wexpDb);
                                         intent.putExtra("charges",wchargesDb);
                                         intent.putExtra("status",wstatusDb);
-
-
                                         startActivity(intent);
-
                                     }*/
 //                                    else if(usertype.equals("customer")){
 //                                        String cusernameDb=dataSnapshot.child(email).child("name").getValue(String.class);
@@ -237,9 +170,9 @@ shared = new Shared(LoginActivity.this);
                         }
                     });
 
-                    }
-
                 }
+
+            }
 
 
         });
@@ -269,8 +202,8 @@ shared = new Shared(LoginActivity.this);
 //            finish();
 //        }
 //        super.onResume();
-//
-//    }
+
+    // }
 
 
 

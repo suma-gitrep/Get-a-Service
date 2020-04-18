@@ -29,15 +29,10 @@ import java.util.List;
 public class WorkerRegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button sign_up_button;
 
-<<<<<<< Updated upstream
-    EditText username,password,email,phonenumber,experience,certification,charges,address;
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
 
-=======
 EditText username,password,email,phonenumber,experience,certification,charges,address;
     Switch availability;
->>>>>>> Stashed changes
+
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
