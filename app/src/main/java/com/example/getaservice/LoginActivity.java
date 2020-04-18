@@ -171,14 +171,14 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-//    @Override    protected void onResume() {
-//        if (auth.getCurrentUser() != null) {
-//            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//            finish();
-//        }
-//        super.onResume();
+    @Override    protected void onResume() {
+        if (auth.getCurrentUser() != null) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+        super.onResume();
 
-   // }
+    }
 
 
 
