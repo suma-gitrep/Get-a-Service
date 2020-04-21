@@ -3,6 +3,8 @@
 <h1> App Name: Get-a-Service</h1>
 <h2>App Logo<h2>
  
+ ![Logo](Logo.jpeg)
+ 
 
 <h2>Team Members:</h2>
  <li>1. Suma Soma</li>
