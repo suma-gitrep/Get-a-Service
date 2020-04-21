@@ -51,6 +51,14 @@ To run this app we need internet.
 </ul>
 </p>
 <h2>Sources used for our Project:</h2>
+
+
+<h2>Test Credentials</h2>
+Usename: sumas
+Password: suma
+
+<h2>App Flow</h2>
+
 <p>
  
  <h2>Contribution Link:</h2>
