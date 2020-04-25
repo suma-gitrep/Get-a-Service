@@ -1,12 +1,9 @@
 package com.example.getaservice.ui.home;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,16 +18,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.getaservice.BookingModel;
 import com.example.getaservice.ExampleDialog;
-import com.example.getaservice.LoginActivity;
-import com.example.getaservice.MainActivity;
 import com.example.getaservice.R;
 import com.example.getaservice.Shared;
 import com.example.getaservice.Workermodel;
 import com.example.getaservice.adapter.BookingsAdater;
 import com.example.getaservice.adapter.MyAdapter;
+import com.example.getaservice.adapter.MyCustomPagerAdapter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -55,7 +52,9 @@ public class HomeFragment extends Fragment implements ExampleDialog.ExampleDialo
     MyAdapter myAdapter;
     BookingsAdater bookingsAdater;
     Shared shared;
-
+    ViewPager viewPager;
+    int images[] = {R.drawable.getaservice, R.drawable.getaservice };
+    MyCustomPagerAdapter myCustomPagerAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -71,7 +70,9 @@ public class HomeFragment extends Fragment implements ExampleDialog.ExampleDialo
         shared = new Shared(getActivity());
         final TextView text = root.findViewById(R.id.text);
         ImageView filterImg = root.findViewById(R.id.filter);
-
+viewPager=root.findViewById(R.id.viewPager);
+        myCustomPagerAdapter = new MyCustomPagerAdapter(getActivity(), images);
+        viewPager.setAdapter(myCustomPagerAdapter);
         filterImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

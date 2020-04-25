@@ -75,12 +75,12 @@ public class WorkerEditActivity extends AppCompatActivity implements AdapterView
         charges.setText(workermodel.getChargestr());
         experience.setText(workermodel.getExperiencestr());
         certification.setText(workermodel.getCertificationstr());
-        if (workermodel.getStatus().equalsIgnoreCase("yes")) {
-            availability.setChecked(true);
-        } else {
-            availability.setChecked(false);
-
-        }
+//        if (workermodel.getStatus().equalsIgnoreCase("yes")) {
+//            availability.setChecked(true);
+//        } else {
+//            availability.setChecked(false);
+//
+//        }
 
 
         save.setOnClickListener(new View.OnClickListener() {
