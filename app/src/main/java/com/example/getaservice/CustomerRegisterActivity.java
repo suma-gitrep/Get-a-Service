@@ -15,16 +15,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 //import com.google.firebase.auth.AuthResult;
 //import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 public class CustomerRegisterActivity extends AppCompatActivity {
 
@@ -37,7 +44,21 @@ public class CustomerRegisterActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 FirebaseDatabase rootNode;
 DatabaseReference reference;
+    FirebaseAuth mAuth;
+    String userId;
 
+    //FirebaseFirestore firebaseFirestore;
+    public final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
+            "[a-zA-Z0-9+._%-+]{1,256}" +
+                    "@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9-]{0,64}" +
+                    "(" +
+                    "." +
+                    "[a-zA-Z0-9][a-zA-Z0-9-]{0,25}" +
+                    ")+"
+    );
+
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +68,10 @@ DatabaseReference reference;
         PD.setMessage("Loading...");
         PD.setCancelable(true);
         PD.setCanceledOnTouchOutside(false);
+        mAuth = FirebaseAuth.getInstance();
 
-       // auth = FirebaseAuth.getInstance();
+
+        // auth = FirebaseAuth.getInstance();
 
 //        if (auth.getCurrentUser() != null) {
 //            startActivity(new Intent(CustomerRegisterActivity.this, MainActivity.class));
@@ -84,6 +107,7 @@ DatabaseReference reference;
                  if( username.getText().length()<=0){
                     username.setError("please enter username");
                 }
+
                  else if( inputPassword.getText().length()<=0){
                      inputPassword.setError("please enter password");
                  }
@@ -91,6 +115,15 @@ DatabaseReference reference;
 
                 else if( confrimPassword.getText().length()<=0){
                     confrimPassword.setError("please enter confrimPassword");
+
+                }
+                 else if( !(confrimPassword.getText().toString().equals(inputPassword.getText().toString()))){
+                     confrimPassword.setError("passwor and  confrimPassword does not match");
+
+                 }
+               else if(!(checkEmail(inputEmail.getText().toString())))
+                {
+                    inputEmail.setError("please enter correct email Id");
 
                 }
                  else if(inputEmail.getText().length()<=0){
@@ -101,6 +134,10 @@ DatabaseReference reference;
                     phoneNumber.setError("please enter phoneNumber");
 
                 }
+                 else if(!(isValidPhone( phoneNumber.getText().toString())) ){
+                     phoneNumber.setError("please correct phone Number");
+
+                 }
 
                 else if( addressDetails.getText().length()<=0){
                     addressDetails.setError("please enter addressDetails");
@@ -109,7 +146,46 @@ DatabaseReference reference;
 
                 else{
 
-                    DatabaseReference refer = FirebaseDatabase.getInstance().getReference("Users");
+//                    DatabaseReference refer = FirebaseDatabase.getInstance().getReference("Users");
+//                    Query checkUser = refer.orderByChild("name").equalTo(usernamestr);
+//                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            if (dataSnapshot.exists()) {
+//                                Toast.makeText(CustomerRegisterActivity.this, "username already exists", Toast.LENGTH_LONG).show();
+//
+//
+//                            } else {
+//
+//                                rootNode= FirebaseDatabase.getInstance();
+//                                reference=rootNode.getReference("Users");
+//                               // CustomerModel cust= new CustomerModel(usernamestr,emailstr,passwordstr,confrimpasswordstr,addressstr,phonestr,"customer");
+//                               Workermodel workermodel = new Workermodel(usernamestr,passwordstr,emailstr,phonestr,"","","",addressstr,"","","customer");
+//                                reference.child(usernamestr).setValue(workermodel);
+//
+//                                Intent ob = new Intent(CustomerRegisterActivity.this, LoginActivity.class);
+//                                startActivity(ob);
+//                                finish();
+//
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//
+//
+//                    });
+
+                     mAuth.createUserWithEmailAndPassword(emailstr,passwordstr).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                         @Override
+                         public void onComplete(@NonNull Task<AuthResult> task) {
+                             if (task.isSuccessful()){
+                                // progressBar.setVisibility(View.GONE);
+                                 Toast.makeText(getApplicationContext(),"Registered Successfully!",Toast.LENGTH_SHORT).show();
+                                 userId = mAuth.getCurrentUser().getUid();
+                                 DatabaseReference refer = FirebaseDatabase.getInstance().getReference("Users");
                     Query checkUser = refer.orderByChild("name").equalTo(usernamestr);
                     checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -140,8 +216,15 @@ DatabaseReference reference;
 
 
                     });
-
-
+                                 Intent intent = new Intent(CustomerRegisterActivity.this, LoginActivity.class);
+                                 startActivity(intent);
+                             }
+                             else {
+                                // progressBar.setVisibility(View.GONE);
+                                 Toast.makeText(CustomerRegisterActivity.this,"could not register",Toast.LENGTH_SHORT).show();
+                             }
+                         }
+                     });
 
 
                 }
@@ -163,6 +246,31 @@ DatabaseReference reference;
         });
 
 
+    }
+    private boolean isValidPhone(String phone)
+    {
+        boolean check=false;
+        if(!Pattern.matches("[a-zA-Z]+", phone))
+        {
+            if(phone.length() < 6 || phone.length() > 13)
+            {
+                check = false;
+
+            }
+            else
+            {
+                check = true;
+
+            }
+        }
+        else
+        {
+            check=false;
+        }
+        return check;
+    }
+    private boolean checkEmail(String email) {
+        return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
     }
 }
 

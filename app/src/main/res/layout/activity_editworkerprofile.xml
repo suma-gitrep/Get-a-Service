@@ -1,11 +1,11 @@
 
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
@@ -67,19 +67,16 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-android:text="sumasomadas@gmail.com"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:text="sumasomadas@gmail.com"
                 android:textColor="@color/colorPrimary" />
-
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,6 +95,8 @@ android:text="sumasomadas@gmail.com"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/colorPrimary" />
+
+
 
 
         </com.google.android.material.textfield.TextInputLayout>

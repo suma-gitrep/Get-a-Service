@@ -16,6 +16,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class WorkerRegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button sign_up_button;
@@ -32,15 +37,27 @@ public class WorkerRegistrationActivity extends AppCompatActivity implements Ada
 
 EditText username,password,email,phonenumber,experience,certification,charges,address;
     Switch availability;
+    FirebaseAuth mAuth;
+    String userId;
+
 
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    public final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
+            "[a-zA-Z0-9+._%-+]{1,256}" +
+                    "@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9-]{0,64}" +
+                    "(" +
+                    "." +
+                    "[a-zA-Z0-9][a-zA-Z0-9-]{0,25}" +
+                    ")+"
+    );
     @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_worker);
 
-
+        mAuth = FirebaseAuth.getInstance();
         sign_up_button=(Button)findViewById(R.id.sign_up_button) ;
 availability=  (Switch) findViewById(R.id.switch1);
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -118,8 +135,17 @@ availability=  (Switch) findViewById(R.id.switch1);
                 else if( charges.getText().length()<=0){
                     Toast.makeText(WorkerRegistrationActivity.this, "Enter charges password", Toast.LENGTH_SHORT).show();
                 }
+                else if(!(checkEmail(email.getText().toString())))
+                {
+                    email.setError("please enter correct email Id");
+
+                }
                 else if( phonenumber.getText().length()<=0){
                     Toast.makeText(WorkerRegistrationActivity.this, "Enter phone number", Toast.LENGTH_SHORT).show();
+                }
+                else if(!(isValidPhone( phonenumber.getText().toString())) ){
+                    phonenumber.setError("please correct phone Number");
+
                 }
                 else if( certification.getText().length()<=0){
                     Toast.makeText(WorkerRegistrationActivity.this, "Enter phone number", Toast.LENGTH_SHORT).show();
@@ -135,35 +161,53 @@ availability=  (Switch) findViewById(R.id.switch1);
                 else{
 
 
-                    DatabaseReference refer = FirebaseDatabase.getInstance().getReference("Users");
-                    Query checkUser = refer.orderByChild("name").equalTo(usernamestr);
-                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                    mAuth.createUserWithEmailAndPassword(emailstr,passwordstr).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
-                                Toast.makeText(WorkerRegistrationActivity.this, "username already exists", Toast.LENGTH_LONG).show();
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                // progressBar.setVisibility(View.GONE);
+                                Toast.makeText(getApplicationContext(),"Registered Successfully!",Toast.LENGTH_SHORT).show();
+                                userId = mAuth.getCurrentUser().getUid();
+                                DatabaseReference refer = FirebaseDatabase.getInstance().getReference("Users");
+                                Query checkUser = refer.orderByChild("name").equalTo(usernamestr);
+                                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.exists()) {
+                                            Toast.makeText(WorkerRegistrationActivity.this, "username already exists", Toast.LENGTH_LONG).show();
 
 
-                            } else {
-                                rootNode= FirebaseDatabase.getInstance();
-                                reference=rootNode.getReference("Users");
-                                Workermodel worke= new Workermodel(usernamestr, passwordstr, emailstr,  phonestr,  experiencestr,  certificationstr,  chargestr,  addressstr,  category,  status, "worker") ;
-                                reference.child(usernamestr).setValue(worke);
+                                        } else {
+                                            rootNode= FirebaseDatabase.getInstance();
+                                            reference=rootNode.getReference("Users");
+                                            Workermodel worke= new Workermodel(usernamestr, passwordstr, emailstr,  phonestr,  experiencestr,  certificationstr,  chargestr,  addressstr,  category,  status, "worker") ;
+                                            reference.child(usernamestr).setValue(worke);
 
-                                    Intent ob = new Intent(WorkerRegistrationActivity.this, LoginActivity.class);
-                                    startActivity(ob);
-                                    finish();
+                                            Intent ob = new Intent(WorkerRegistrationActivity.this, LoginActivity.class);
+                                            startActivity(ob);
+                                            finish();
 
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+
+
+                                });
+                                Intent intent = new Intent(WorkerRegistrationActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                // progressBar.setVisibility(View.GONE);
+                                Toast.makeText(WorkerRegistrationActivity.this,"could not register",Toast.LENGTH_SHORT).show();
                             }
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-
-
                     });
+
+
 
 
 
@@ -185,5 +229,29 @@ availability=  (Switch) findViewById(R.id.switch1);
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+    private boolean isValidPhone(String phone)
+    {
+        boolean check=false;
+        if(!Pattern.matches("[a-zA-Z]+", phone))
+        {
+            if(phone.length() < 6 || phone.length() > 13)
+            {
+                check = false;
 
+            }
+            else
+            {
+                check = true;
+
+            }
+        }
+        else
+        {
+            check=false;
+        }
+        return check;
+    }
+    private boolean checkEmail(String email) {
+        return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
+    }
 }

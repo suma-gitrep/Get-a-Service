@@ -17,6 +17,7 @@ public class CustomerEditActivity extends AppCompatActivity {
     Shared shared;
     private EditText inputEmail, inputPassword,confrimPassword,username,phoneNumber,addressDetails;
 Button save;
+String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +32,22 @@ save=(Button)findViewById(R.id.save_button);
         username=(EditText)findViewById(R.id.userName);
         addressDetails=(EditText)findViewById(R.id.address);
         phoneNumber=(EditText)findViewById(R.id.phone);
-
+username.setEnabled(false);
         Workermodel workermodel = new Gson().fromJson(shared.getWorkerModel(), Workermodel.class);
 
-        final String  name=workermodel.getName();
+       // final String  name=workermodel.getName();
         inputEmail.setText(workermodel.getEmail());
         inputPassword.setText(workermodel.getPasswordstr());
         confrimPassword.setText(workermodel.getPasswordstr());
         username.setText(workermodel.getName());
         addressDetails.setText(workermodel.getAddressstr());
         phoneNumber.setText(workermodel.getPhonestr());
-
+name=workermodel.getName();
 save.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("Users").child(name);
-        Workermodel workermodel = new Workermodel(username.getText().toString(),inputPassword.getText().toString(),inputEmail.getText().toString(),phoneNumber.getText().toString(),"","","",addressDetails.getText().toString(),"","","customer");
+        Workermodel workermodel = new Workermodel(name,inputPassword.getText().toString(),inputEmail.getText().toString(),phoneNumber.getText().toString(),"","","",addressDetails.getText().toString(),"","","customer");
 
         //updating artist
         dR.setValue(workermodel);
