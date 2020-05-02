@@ -1,5 +1,6 @@
 package com.example.getaservice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +14,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 public class CustomerEditActivity extends AppCompatActivity {
-
     Shared shared;
     private EditText inputEmail, inputPassword,confrimPassword,username,phoneNumber,addressDetails;
 Button save;
 String name;
-
+Button cancel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +33,7 @@ save=(Button)findViewById(R.id.save_button);
         addressDetails=(EditText)findViewById(R.id.address);
         phoneNumber=(EditText)findViewById(R.id.phone);
 username.setEnabled(false);
+cancel=findViewById(R.id.cancelbutton);
         Workermodel workermodel = new Gson().fromJson(shared.getWorkerModel(), Workermodel.class);
 
        // final String  name=workermodel.getName();
@@ -59,7 +60,18 @@ finish();
     }
 });
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(
+                        CustomerEditActivity.this,
+                        "Cancelled to save the data",
+                        Toast.LENGTH_LONG).show();
+                Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(in);
 
+            }
+        });
 
     }
 }
