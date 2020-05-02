@@ -54,10 +54,77 @@ To run this app we need internet.
 
 
 <h2>Test Credentials</h2>
-Usename: sumas
-Password: suma
+Usename: chetan
+Password: chetan@1997
 
 <h2>App Flow</h2>
+The below screenshots are illustrating about the work flow of the app. This is home pageof the app.
+
+When user first opens the app, it would ask for permission to access the location of the device to get current location.
+
+ ![Home](home.PNG)
+ 
+ And this actual home page,
+ 
+ ![home](home1.png)
+ 
+ From This Navigation Drawer user can access the Following Page:
+ 
+ ![navigation](nav.png)
+ 
+ 
+ After entering all the details, when user clicks on the Register 	Button it checks all validations for the fields, if everything is fine it 	saves the user in firebase real time database. 
+ 
+ ![registration](reg.png)
+ ![registration](reg1.png)
+ 
+ User can login by entering username and password.
+ 
+![login](login.PNG)
+
+If user forgets his password, he could change his password by entering his email. Where he can get the rest the password link.
+
+![forget](forgot.png)
+
+After Login, user can see the my bookings fragment. And user can book an appointment by giving the details of the day and timings.
+
+![Booking](book.png)
+![Booking](book1.png)
+
+User can view his booking history in this page.
+
+![Booking](book2.png)
+
+customer or worker can edit their information.
+
+![Edit](edit.png)
+![Edit](edit1.png)
+
+This page shows the details of Get A Service App. How it works 	and how this can be used.
+
+![About](about.png)
+
+User can share Get A Service app google play 	services url.
+
+![share](share.PNG)
+
+User can send messages about the Get A Service App.
+
+![Send](send.PNG)
+
+
+
+
+
+
+
+ 
+ 
+ 
+
+ 
+ 
+
 
 <p>
  
