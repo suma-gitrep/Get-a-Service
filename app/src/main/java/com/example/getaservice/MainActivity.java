@@ -173,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements ExampleDialog.Exa
             case R.id.action_logout:
                 shared.setIsUserLoggedIn("false");
                 shared.setWorkerModel("");
+                shared.setWorkerModel("");
                 Toast.makeText(MainActivity.this, "Successfully logged out of the app", Toast.LENGTH_LONG).show();
                 recreate();
                 break;

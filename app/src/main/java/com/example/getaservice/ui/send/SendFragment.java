@@ -38,7 +38,7 @@ public class SendFragment extends Fragment {
 
                     try {
                         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                        sendIntent.putExtra("sms_body", "default content");
+                        sendIntent.putExtra("sms_body", "message of our app can be shown here");
                         sendIntent.setType("vnd.android-dir/mms-sms");
                         startActivity(sendIntent);
                     }
