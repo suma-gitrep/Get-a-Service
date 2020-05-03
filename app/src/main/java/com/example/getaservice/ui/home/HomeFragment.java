@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment implements ExampleDialog.ExampleDialo
         //final TextView textView = root.findViewById(R.id.text_home);
         shared = new Shared(getActivity());
         final TextView text = root.findViewById(R.id.text);
-        ImageView filterImg = root.findViewById(R.id.filter);
+      //  ImageView filterImg = root.findViewById(R.id.filter);
         dailogtext =root.findViewById(R.id.dailogtext);
         currentlocation=root.findViewById(R.id.simpleSearchView);
 viewPager=root.findViewById(R.id.viewPager);
@@ -111,114 +111,114 @@ viewPager=root.findViewById(R.id.viewPager);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         getLastLocation();
-        filterImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // Build an AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-                // String array for alert dialog multi choice items
-                final String[] colors = new String[]{
-                        "Laboratory",
-                        "Plumber",
-                        "carpentry",
-                        "Babysitting",
-                        "home services"
-                };
-
-                // Boolean array for initial selected items
-                final boolean[] checkedColors = new boolean[]{
-                        false,
-                        false,
-                        false,
-                        false,
-                        false
-
-                };
-
-                // Convert the color array to list
-                final List<String> colorsList = Arrays.asList(colors);
-
-                // Set multiple choice items for alert dialog
-
-                builder.setMultiChoiceItems(colors, checkedColors, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-
-                        // Update the current focused item's checked status
-                        checkedColors[which] = isChecked;
-
-
-                        if(isChecked){
-                            mUserItems.add(which);
-                        }else{
-                            mUserItems.remove((Integer.valueOf(which)));
-                        }
-                        // Get the current focused item
-                        String currentItem = colorsList.get(which);
-
-                        // Notify the current action
-                        Toast.makeText(getActivity(),
-                                currentItem + " " + isChecked, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                // Specify the dialog is not cancelable
-                builder.setCancelable(false);
-
-                // Set a title for alert dialog
-                builder.setTitle("Your preferred Categories?");
-
-                // Set the positive/yes button click listener
-                builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        String item = "";
-                        for (int i = 0; i < mUserItems.size(); i++) {
-                            item = item + colors[mUserItems.get(i)];
-                            if (i != mUserItems.size() - 1) {
-                                item = item + ", ";
-                            }
-                        }
-
-                        System.out.println("Selected list:"+item);
-                        mUserItems.clear();
-                        dailogtext.setText(item);
-
-                    }
-                });
-
-                // Set the negative/no button click listener
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-
-                        // Do something when click the negative button
-                    }
-                });
-
-                // Set the neutral/cancel button click listener
-                builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do something when click the neutral button
-                        for (int i = 0; i < checkedColors.length; i++) {
-                            checkedColors[i] = false;
-                            mUserItems.clear();
-                           // mItemSelected.setText("");
-                        }
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                // Display the alert dialog on interface
-                dialog.show();
-            }
-        });
+//        filterImg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                // Build an AlertDialog
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//
+//                // String array for alert dialog multi choice items
+//                final String[] colors = new String[]{
+//                        "Laboratory",
+//                        "Plumber",
+//                        "carpentry",
+//                        "Babysitting",
+//                        "home services"
+//                };
+//
+//                // Boolean array for initial selected items
+//                final boolean[] checkedColors = new boolean[]{
+//                        false,
+//                        false,
+//                        false,
+//                        false,
+//                        false
+//
+//                };
+//
+//                // Convert the color array to list
+//                final List<String> colorsList = Arrays.asList(colors);
+//
+//                // Set multiple choice items for alert dialog
+//
+//                builder.setMultiChoiceItems(colors, checkedColors, new DialogInterface.OnMultiChoiceClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+//
+//                        // Update the current focused item's checked status
+//                        checkedColors[which] = isChecked;
+//
+//
+//                        if(isChecked){
+//                            mUserItems.add(which);
+//                        }else{
+//                            mUserItems.remove((Integer.valueOf(which)));
+//                        }
+//                        // Get the current focused item
+//                        String currentItem = colorsList.get(which);
+//
+//                        // Notify the current action
+//                        Toast.makeText(getActivity(),
+//                                currentItem + " " + isChecked, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//                // Specify the dialog is not cancelable
+//                builder.setCancelable(false);
+//
+//                // Set a title for alert dialog
+//                builder.setTitle("Your preferred Categories?");
+//
+//                // Set the positive/yes button click listener
+//                builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                        String item = "";
+//                        for (int i = 0; i < mUserItems.size(); i++) {
+//                            item = item + colors[mUserItems.get(i)];
+//                            if (i != mUserItems.size() - 1) {
+//                                item = item + ", ";
+//                            }
+//                        }
+//
+//                        System.out.println("Selected list:"+item);
+//                        mUserItems.clear();
+//                        dailogtext.setText(item);
+//
+//                    }
+//                });
+//
+//                // Set the negative/no button click listener
+//                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                        dialog.dismiss();
+//
+//                        // Do something when click the negative button
+//                    }
+//                });
+//
+//                // Set the neutral/cancel button click listener
+//                builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // Do something when click the neutral button
+//                        for (int i = 0; i < checkedColors.length; i++) {
+//                            checkedColors[i] = false;
+//                            mUserItems.clear();
+//                           // mItemSelected.setText("");
+//                        }
+//                    }
+//                });
+//
+//                AlertDialog dialog = builder.create();
+//                // Display the alert dialog on interface
+//                dialog.show();
+//            }
+//        });
 
         //REFERENCE
         rv = (RecyclerView) root.findViewById(R.id.interplanettary_RV);
