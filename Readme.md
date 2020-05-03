@@ -52,6 +52,9 @@ To run this app we need internet.
 </p>
 <h2>Sources used for our Project:</h2>
 
+https://www.androidhive.info/
+
+https://www.youtube.com/watch?v=TwHmrZxiPA8
 
 <h2>Test Credentials</h2>
 Usename: chetan
